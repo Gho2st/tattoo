@@ -11,6 +11,7 @@ const stats = [
 export default function About() {
   return (
     <section
+      id="o-mnie"
       className="bg-[#0a0a08] px-5 py-16 flex flex-col gap-12 sm:px-8 sm:py-20 lg:px-20 lg:py-28"
       style={{ fontFamily: "'Montserrat', sans-serif" }}
     >

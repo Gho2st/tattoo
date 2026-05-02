@@ -32,6 +32,7 @@ export default function Specializations() {
     <section
       className="bg-[#0a0a08] px-5 py-16 sm:px-8 sm:py-20 lg:px-20 lg:py-28"
       style={{ fontFamily: "'Montserrat', sans-serif" }}
+      id="faq"
     >
       {/* Eyebrow */}
       <span className="flex items-center gap-3 text-[0.48rem] sm:text-[0.5rem] tracking-[0.38em] uppercase text-[#c9a96e] mb-7">

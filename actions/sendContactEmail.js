@@ -5,8 +5,8 @@ import { Resend } from "resend";
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 // ✏️ Podmień na prawdziwy adres Uli
-const TO_EMAIL = "ula@kulttattoo.pl";
-const FROM_EMAIL = "formularz@wolaktattoo.pl"; // musi być z zweryfikowanej domeny w Resend
+const TO_EMAIL = process.env.CONTACT_EMAIL;
+const FROM_EMAIL = process.env.RESEND_FROM_EMAIL ?? "onboarding@resend.dev"; // musi być z zweryfikowanej domeny w Resend
 
 export async function sendContactEmail(formData) {
   const name = formData.get("name");
