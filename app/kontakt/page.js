@@ -9,7 +9,6 @@ const INFO = [
     href: "mailto:ula@kulttattoo.pl",
   },
   { label: "Telefon", value: "+48 000 000 000", href: "tel:+48000000000" },
-  { label: "Godziny", value: "Wt–Sb, 10:00–18:00", href: null },
 ];
 
 export const metadata = {

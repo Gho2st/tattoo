@@ -105,7 +105,7 @@ export default function Hero() {
           {/* CTA row */}
           <div className="flex items-center gap-2 sm:gap-3">
             <Link
-              href="/portfolio"
+              href="/#portfolio"
               className="text-[0.55rem] sm:text-[0.58rem] tracking-[0.2em] uppercase text-[#f0ece3]/40 border border-[#f0ece3]/15 hover:border-[#f0ece3]/30 px-4 py-3 sm:px-5 transition-colors duration-200 no-underline whitespace-nowrap"
             >
               Portfolio

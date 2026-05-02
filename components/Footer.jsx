@@ -5,16 +5,14 @@ const NAV_LINKS = [
   { label: "Start", href: "/#hero" },
   { label: "O mnie", href: "/#o-mnie" },
   { label: "Portfolio", href: "/#portfolio" },
-  { label: "Specjalizacje", href: "/#specjalizacje" },
+  { label: "FAQ", href: "/#faq" },
   { label: "Kontakt", href: "/kontakt" },
 ];
 
 // ✏️ Uzupełnij prawdziwe dane
 const CONTACT = [
-  { label: "Kult Tattoo, Kraków", href: null },
   { label: "ula@kulttattoo.pl", href: "mailto:ula@kulttattoo.pl" },
   { label: "+48 000 000 000", href: "tel:+48000000000" },
-  { label: "Wt–Sb, 10:00–18:00", href: null },
 ];
 
 export default function Footer() {
@@ -42,7 +40,6 @@ export default function Footer() {
           </Link>
           <p className="text-xs font-light leading-relaxed text-[#f0ece3]/28 max-w-xs">
             Tatuaże w kolorze i szarościach, covery oraz autorskie kompozycje.
-            Kult Tattoo Studio, Kraków.
           </p>
           {/* Logo */}
           <Image
