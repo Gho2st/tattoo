@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import Image from "next/image";
 
 const ALL_ITEMS = [
@@ -63,6 +63,20 @@ export default function Gallery() {
     () => setLightbox((i) => (i + 1) % filtered.length),
     [filtered.length],
   );
+
+  // Swipe
+  const touchStartX = useRef(null);
+
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e) => {
+    if (touchStartX.current === null) return;
+    const diff = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) diff > 0 ? next() : prev();
+    touchStartX.current = null;
+  };
 
   // Klawiatura
   useEffect(() => {
@@ -205,6 +219,8 @@ export default function Gallery() {
         <div
           className="fixed inset-0 z-50 bg-[#0a0a08]/96 flex items-center justify-center"
           onClick={closeLightbox}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
         >
           {/* Zamknij */}
           <button
