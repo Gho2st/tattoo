@@ -4,6 +4,12 @@ import Specializations from "@/components/homepage/Faq";
 import Gallery from "@/components/homepage/Gallery";
 import Hero from "@/components/homepage/Hero";
 
+export const metadata = {
+  title: "Urszula Wolak - Tatuaż realistyczny | Mikrorealistyczny | Kolorowy",
+  description:
+    "Urszula Wolak — tatuażystka w Krakowie. Specjalizacja: realizm kolorowy i covery. Umów konsultację online.",
+};
+
 export default function Home() {
   return (
     <>
@@ -11,7 +17,7 @@ export default function Home() {
       <About />
       <Specializations />
       <Gallery />
-      <CTA/>
+      <CTA />
     </>
   );
 }

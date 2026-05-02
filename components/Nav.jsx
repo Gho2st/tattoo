@@ -10,7 +10,7 @@ const navLinks = [
   { label: "Portfolio", href: "/#portfolio" },
   { label: "Styl", href: "/#styl" },
   { label: "FAQ", href: "/#faq" },
-  { label: "Kontakt", href: "/#kontakt" },
+  { label: "Kontakt", href: "/kontakt" },
 ];
 
 export default function Navbar() {
