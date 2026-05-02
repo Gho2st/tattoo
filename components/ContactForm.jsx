@@ -10,6 +10,8 @@ const SIZES = [
   { label: "Rękaw / sleeve", value: "rekaw" },
 ];
 
+const MAX_TOTAL_MB = 35;
+
 export default function ContactForm() {
   const [isCover, setIsCover] = useState(null);
   const [size, setSize] = useState("");
@@ -27,8 +29,19 @@ export default function ContactForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setError("");
+
+    // Walidacja rozmiaru załączników po stronie klienta
+    const allFiles = [...inspirationFiles, ...coverFiles];
+    const totalMB =
+      allFiles.reduce((sum, f) => sum + f.size, 0) / (1024 * 1024);
+    if (totalMB > MAX_TOTAL_MB) {
+      setError(
+        `Załączniki są za duże (${totalMB.toFixed(1)} MB). Maksymalnie ${MAX_TOTAL_MB} MB łącznie.`,
+      );
+      return;
+    }
+
     const formData = new FormData(e.target);
-    // Dodaj wartości ze state (pill buttons nie są zwykłymi inputami)
     formData.set("size", size);
     formData.set("isCover", String(isCover));
 
@@ -181,9 +194,8 @@ export default function ContactForm() {
         />
       </Field>
 
-      {/* Błąd */}
       {error && (
-        <p className="mt-4 text-xs text-red-400 border border-red-400/20 px-4 py-3">
+        <p className="mt-5 text-sm text-red-400 border border-red-400/20 px-4 py-3">
           {error}
         </p>
       )}
@@ -192,7 +204,7 @@ export default function ContactForm() {
         type="submit"
         disabled={isPending}
         className={[
-          "mt-10 w-full text-xs font-medium tracking-widest uppercase",
+          "mt-10 w-full text-sm font-medium tracking-widest uppercase",
           "text-[#0a0a08] bg-[#c9a96e] hover:bg-[#d4b580] py-5",
           "transition-colors duration-200",
           isPending ? "opacity-60 cursor-not-allowed" : "cursor-pointer",
@@ -201,7 +213,7 @@ export default function ContactForm() {
         {isPending ? "Wysyłanie..." : "Wyślij zapytanie"}
       </button>
 
-      <p className="mt-5 text-center text-xs leading-relaxed text-[#f0ece3]/20">
+      <p className="mt-5 text-center text-sm leading-relaxed text-[#f0ece3]/20">
         Odpowiadam w ciągu 48 godzin.
         <br />
         Wycenę i szczegóły omówimy po pierwszym kontakcie.
@@ -214,13 +226,13 @@ export default function ContactForm() {
 
 const inp = [
   "w-full bg-transparent border-none outline-none",
-  "text-sm sm:text-base font-light text-[#f0ece3]",
-  "placeholder:text-[#f0ece3]/20 pt-1 pb-0.5",
+  "text-base sm:text-lg font-light text-[#f0ece3]",
+  "placeholder:text-[#f0ece3]/18 pt-1 pb-1",
 ].join(" ");
 
 const pill = (active) =>
   [
-    "text-xs tracking-wider uppercase px-4 py-2 border cursor-pointer transition-all duration-200",
+    "text-sm tracking-wider uppercase px-5 py-2.5 border cursor-pointer transition-all duration-200",
     active
       ? "bg-[#c9a96e] text-[#0a0a08] border-[#c9a96e] font-medium"
       : "bg-transparent text-[#f0ece3]/40 border-[#c9a96e]/20 hover:text-[#f0ece3]/70 hover:border-[#c9a96e]/40",
@@ -230,11 +242,11 @@ function Field({ label, required, last, children }) {
   return (
     <div
       className={[
-        "flex flex-col gap-3 py-5 border-t border-[#c9a96e]/10",
-        last ? "border-b border-b-[#c9a96e]/10" : "",
+        "flex flex-col gap-3 py-6 border-t border-[#c9a96e]/12",
+        last ? "border-b border-b-[#c9a96e]/12" : "",
       ].join(" ")}
     >
-      <label className="text-xs tracking-widest uppercase text-[#c9a96e]/50">
+      <label className="text-xs tracking-widest uppercase text-[#c9a96e]/60 font-medium">
         {label}
         {required && <span className="ml-1 text-[#c9a96e]/30">*</span>}
       </label>
@@ -247,28 +259,28 @@ function Upload({ files, onClick, hint, sub }) {
   return (
     <div
       onClick={onClick}
-      className="mt-1 border border-dashed border-[#c9a96e]/18 hover:border-[#c9a96e]/45 px-5 py-7 flex flex-col items-center gap-3 cursor-pointer transition-colors duration-200"
+      className="mt-2 border border-dashed border-[#c9a96e]/20 hover:border-[#c9a96e]/50 px-6 py-8 flex flex-col items-center gap-3 cursor-pointer transition-colors duration-200"
     >
       {files.length > 0 ? (
-        <p className="text-xs text-[#c9a96e]/65 text-center">
+        <p className="text-sm text-[#c9a96e]/70 text-center leading-relaxed">
           {files.map((f) => f.name).join(", ")}
         </p>
       ) : (
         <>
           <svg
-            className="w-5 h-5"
+            className="w-6 h-6"
             viewBox="0 0 20 20"
             fill="none"
-            stroke="rgba(201,169,110,0.35)"
+            stroke="rgba(201,169,110,0.4)"
             strokeWidth="1.2"
           >
             <path d="M10 3v10M5 8l5-5 5 5" />
             <path d="M3 15h14" />
           </svg>
-          <span className="text-xs tracking-wider uppercase text-[#f0ece3]/25">
+          <span className="text-sm tracking-wider uppercase text-[#f0ece3]/28">
             {hint}
           </span>
-          <span className="text-xs text-[#f0ece3]/15">{sub}</span>
+          <span className="text-sm text-[#f0ece3]/16">{sub}</span>
         </>
       )}
     </div>

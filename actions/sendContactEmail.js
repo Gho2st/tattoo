@@ -4,9 +4,17 @@ import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-// ✏️ Podmień na prawdziwy adres Uli
 const TO_EMAIL = process.env.CONTACT_EMAIL;
-const FROM_EMAIL = process.env.RESEND_FROM_EMAIL ?? "onboarding@resend.dev"; // musi być z zweryfikowanej domeny w Resend
+const FROM_EMAIL = process.env.RESEND_FROM_EMAIL ?? "onboarding@resend.dev";
+
+// Zamienia File z FormData na { filename, content } wymagane przez Resend
+async function fileToAttachment(file) {
+  const buffer = await file.arrayBuffer();
+  return {
+    filename: file.name,
+    content: Buffer.from(buffer),
+  };
+}
 
 export async function sendContactEmail(formData) {
   const name = formData.get("name");
@@ -17,12 +25,27 @@ export async function sendContactEmail(formData) {
   const description = formData.get("description");
   const timing = formData.get("timing");
 
-  // Walidacja po stronie serwera
+  // Walidacja
   if (!name || !contact || !bodyPart) {
     return { success: false, error: "Uzupełnij wymagane pola." };
   }
 
-  // Zbuduj treść maila
+  // Zbierz załączniki
+  const attachments = [];
+
+  const coverPhoto = formData.get("coverPhoto");
+  if (coverPhoto instanceof File && coverPhoto.size > 0) {
+    attachments.push(await fileToAttachment(coverPhoto));
+  }
+
+  // getAll bo inspirations to multiple
+  const inspirations = formData.getAll("inspirations");
+  for (const file of inspirations) {
+    if (file instanceof File && file.size > 0) {
+      attachments.push(await fileToAttachment(file));
+    }
+  }
+
   const html = `
     <div style="font-family: sans-serif; max-width: 600px; color: #1a1a1a;">
       <h2 style="border-bottom: 2px solid #c9a96e; padding-bottom: 8px; color: #0a0a08;">
@@ -54,6 +77,15 @@ export async function sendContactEmail(formData) {
           <td style="padding: 10px 0; border-bottom: 1px solid #eee; color: #888; font-size: 13px;">Preferowany termin</td>
           <td style="padding: 10px 0; border-bottom: 1px solid #eee; font-size: 14px;">${timing || "—"}</td>
         </tr>
+        ${
+          attachments.length > 0
+            ? `
+        <tr>
+          <td style="padding: 10px 0; border-bottom: 1px solid #eee; color: #888; font-size: 13px;">Załączniki</td>
+          <td style="padding: 10px 0; border-bottom: 1px solid #eee; font-size: 14px;">${attachments.map((a) => a.filename).join(", ")}</td>
+        </tr>`
+            : ""
+        }
       </table>
 
       ${
@@ -80,6 +112,7 @@ export async function sendContactEmail(formData) {
       replyTo: contact.includes("@") ? contact : undefined,
       subject: `Nowe zapytanie od ${name} — ${bodyPart}`,
       html,
+      attachments,
     });
 
     return { success: true };
