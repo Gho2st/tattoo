@@ -153,13 +153,13 @@ export default function Navbar() {
               {/* Numer + nazwa */}
               <div className="flex items-baseline gap-4">
                 <span
-                  className="text-[0.48rem] tracking-[0.25em] text-[#c9a96e]/40 tabular-nums"
+                  className="text-xs tracking-[0.25em] text-[#c9a96e]/40 tabular-nums"
                   style={{ fontFamily: "'Montserrat', sans-serif" }}
                 >
                   0{i + 1}
                 </span>
                 <span
-                  className="text-[2.4rem] sm:text-[3rem] font-light tracking-wide text-[#f0ece3]/75 group-hover:text-[#f0ece3] transition-colors duration-200"
+                  className="text-xl  font-light tracking-wide text-[#f0ece3]/75 group-hover:text-[#f0ece3] transition-colors duration-200"
                   style={{ fontFamily: "'Cormorant Garamond', serif" }}
                 >
                   {link.label}
