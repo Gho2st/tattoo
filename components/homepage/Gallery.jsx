@@ -102,7 +102,6 @@ export default function Gallery() {
     <section
       id="portfolio"
       className="bg-[#0a0a08] px-5 py-16 sm:px-8 sm:py-20 lg:px-20 lg:py-28"
-      style={{ fontFamily: "'Montserrat', sans-serif" }}
     >
       {/* ── Header ── */}
       <div className="flex items-end justify-between gap-8 mb-8 sm:mb-10">
@@ -116,12 +115,12 @@ export default function Gallery() {
             style={{ fontFamily: "'Cormorant Garamond', serif" }}
           >
             Moje
-            <em className="block italic text-[#f0ece3]/40">prace</em>
+            <em className="block italic text-[#f0ece3]/40"> prace</em>
           </h2>
         </div>
 
         {/* Filtry pionowo */}
-        <div className="flex flex-col items-end gap-2 flex-shrink-0">
+        <div className="flex flex-col items-end gap-2 shrink-0">
           {FILTERS.map(({ label, value }) => (
             <button
               key={value}

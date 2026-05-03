@@ -52,7 +52,7 @@ export default function About() {
             style={{ fontFamily: "'Cormorant Garamond', serif" }}
           >
             Cześć, jestem
-            <em className="block italic text-[#f0ece3]/42">Ula</em>
+            <em className="block italic text-[#f0ece3]/42"> Ula</em>
           </h2>
 
           {/* Opis */}

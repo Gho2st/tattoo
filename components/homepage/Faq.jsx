@@ -45,7 +45,7 @@ export default function Specializations() {
         style={{ fontFamily: "'Cormorant Garamond', serif" }}
       >
         Czym się
-        <em className="block italic text-[#f0ece3]/42">zajmuję?</em>
+        <em className="block italic text-[#f0ece3]/42"> zajmuję?</em>
       </h2>
 
       <div>
