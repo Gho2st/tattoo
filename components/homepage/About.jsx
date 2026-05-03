@@ -113,7 +113,7 @@ export default function About() {
                 </span>
               )}
             </span>
-            <span className="text-[0.48rem] sm:text-[0.5rem] tracking-[0.22em] uppercase text-[#f0ece3]/28">
+            <span className="text-[0.6rem] sm:text-[0.65rem] tracking-[0.22em] uppercase text-[#f0ece3]/28">
               {label}
             </span>
           </div>
