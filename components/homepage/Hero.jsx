@@ -76,7 +76,7 @@ export default function Hero() {
         >
           Urszula
           <br />
-          <em className="italic text-[#f0ece3]/50">Wolak</em>
+          <em className="italic text-[#f0ece3]/50"> Wolak</em>
         </h1>
 
         {/* Opis */}
