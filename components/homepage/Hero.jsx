@@ -10,7 +10,6 @@ const SLIDES = [
   "/images/hero/3.webp",
   "/images/hero/4.webp",
   "/images/hero/5.webp",
-  "/images/hero/6.webp",
 ];
 
 const INTERVAL_MS = 5000;
