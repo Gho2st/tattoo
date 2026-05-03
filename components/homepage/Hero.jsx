@@ -59,7 +59,7 @@ export default function Hero() {
       ))}
 
       {/* Gradient — mocniejszy na dole */}
-      <div className="absolute inset-0 bg-linear-to-t from-[#0a0a08] via-[#0a0a08]/65 to-[#0a0a08]/10" />
+      <div className="absolute inset-0 bg-linear-to-t from-[#0a0a08] via-[#0a0a08]/45 to-[#0a0a08]/10" />
 
       {/* ── Główna treść — bottom ── */}
       <div className="relative z-10 mt-auto flex flex-col px-5 pb-8 gap-0 sm:px-8 sm:pb-10 lg:px-20 lg:pb-16">
