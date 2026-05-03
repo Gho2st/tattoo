@@ -34,7 +34,7 @@ export default function Specializations() {
       id="faq"
     >
       {/* Eyebrow */}
-      <span className="flex items-center gap-3 text-[0.48rem] sm:text-[0.5rem] tracking-[0.38em] uppercase text-[#c9a96e] mb-7">
+      <span className="flex items-center gap-3 text-xs tracking-[0.38em] uppercase text-[#c9a96e] mb-7">
         <span className="block w-6 h-px bg-[#c9a96e]" />
         FAQ
       </span>
