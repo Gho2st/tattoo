@@ -108,14 +108,14 @@ export default function Gallery() {
         <div>
           <span className="flex items-center gap-3 text-xs tracking-widest uppercase text-[#c9a96e] mb-4">
             <span className="block w-6 h-px bg-[#c9a96e]" />
-            Portfolio
+            Galeria
           </span>
           <h2
             className="text-3xl sm:text-4xl lg:text-5xl font-light leading-none text-[#f0ece3] m-0"
             style={{ fontFamily: "'Cormorant Garamond', serif" }}
           >
-            Moje
-            <em className="block italic text-[#f0ece3]/40"> prace</em>
+            Portfolio tatuaży —
+            <em className="block italic text-[#f0ece3]/40"> moje prace</em>
           </h2>
         </div>
 

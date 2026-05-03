@@ -65,17 +65,15 @@ export default function Hero() {
       <div className="relative z-10 mt-auto flex flex-col px-5 pb-8 gap-0 sm:px-8 sm:pb-10 lg:px-20 lg:pb-16">
         {/* Eyebrow */}
         <span className="text-[0.48rem] sm:text-[0.52rem] tracking-[0.38em] uppercase text-[#c9a96e] mb-3 animate-[fadeUp_0.8s_ease_0.3s_both]">
-          Tatuaż realistyczny | Mikrorealistyczny | Kolorowy
+          Profesjonalne i indywidualne podejście
         </span>
 
         {/* Headline */}
         <h1
-          className="font-light leading-[0.92] text-[#f0ece3] m-0 mb-4 sm:mb-5 lg:mb-6 animate-[fadeUp_0.9s_ease_0.45s_both] text-[3rem] sm:text-[4.5rem] lg:text-[7rem]"
+          className="font-light leading-snug text-[#f0ece3] m-0 mb-4 sm:mb-5 lg:mb-6 animate-[fadeUp_0.9s_ease_0.45s_both] text-2xl sm:text-3xl lg:text-4xl"
           style={{ fontFamily: "'Cormorant Garamond', serif" }}
         >
-          Urszula
-          <br />
-          <em className="italic text-[#f0ece3]/50"> Wolak</em>
+          Urszula Wolak <br /> Tatuaż realistyczny i mikrorealizm w Krakowie
         </h1>
 
         {/* Opis */}

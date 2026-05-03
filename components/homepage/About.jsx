@@ -43,7 +43,7 @@ export default function About() {
         <div className="flex flex-col gap-5 lg:pt-2">
           {/* Eyebrow */}
           <span className="flex items-center gap-3 text-xs tracking-wide uppercase text-[#c9a96e]">
-            <span className="block w-6 h-px bg-[#c9a96e]" />O mnie
+            <span className="block w-6 h-px bg-[#c9a96e]" />Więcej
           </span>
 
           {/* Heading */}
@@ -51,8 +51,11 @@ export default function About() {
             className="text-3xl sm:text-4xl lg:text-6xl font-light leading-[1.02] text-[#f0ece3] m-0"
             style={{ fontFamily: "'Cormorant Garamond', serif" }}
           >
-            Cześć, jestem
-            <em className="block italic text-[#f0ece3]/42"> Ula</em>
+            O mnie —
+            <em className="block italic text-[#f0ece3]/42">
+              {" "}
+               tatuażystka z Kult Tattoo Kraków
+            </em>
           </h2>
 
           {/* Opis */}

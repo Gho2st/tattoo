@@ -19,8 +19,8 @@ export default function CTA() {
             className="text-4xl sm:text-5xl lg:text-6xl font-light leading-none text-[#f0ece3] m-0 mb-6"
             style={{ fontFamily: "'Cormorant Garamond', serif" }}
           >
-            Masz pomysł?
-            <em className="block italic text-[#f0ece3]/40"> Porozmawiajmy</em>
+            Umów sesję tatuażu
+            <em className="block italic text-[#f0ece3]/40"> w Krakowie</em>
           </h2>
 
           <p className="text-sm font-light leading-relaxed text-secondary max-w-md mb-10">

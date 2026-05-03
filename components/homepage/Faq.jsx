@@ -36,7 +36,7 @@ export default function Specializations() {
       {/* Eyebrow */}
       <span className="flex items-center gap-3 text-[0.48rem] sm:text-[0.5rem] tracking-[0.38em] uppercase text-[#c9a96e] mb-7">
         <span className="block w-6 h-px bg-[#c9a96e]" />
-        Specjalizacje
+        FAQ
       </span>
 
       {/* Heading */}
@@ -44,8 +44,11 @@ export default function Specializations() {
         className="text-[2.2rem] sm:text-[2.8rem] lg:text-[3.5rem] font-light leading-[1.04] text-[#f0ece3] m-0 mb-10 sm:mb-12"
         style={{ fontFamily: "'Cormorant Garamond', serif" }}
       >
-        Czym się
-        <em className="block italic text-[#f0ece3]/42"> zajmuję?</em>
+        Specjalizacje —
+        <em className="block italic text-[#f0ece3]/42">
+          {" "}
+          realizm, mikrorealizm, kolor i covery
+        </em>
       </h2>
 
       <div>
