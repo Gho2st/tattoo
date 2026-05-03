@@ -31,7 +31,6 @@ export default function Specializations() {
   return (
     <section
       className="bg-[#0a0a08] px-5 py-16 sm:px-8 sm:py-20 lg:px-20 lg:py-28"
-      style={{ fontFamily: "'Montserrat', sans-serif" }}
       id="faq"
     >
       {/* Eyebrow */}
@@ -49,7 +48,6 @@ export default function Specializations() {
         <em className="block italic text-[#f0ece3]/42">zajmuję?</em>
       </h2>
 
-      {/* Accordion */}
       <div>
         {items.map(({ num, question, answer }, i) => (
           <div
@@ -71,7 +69,7 @@ export default function Specializations() {
                     "text-[1.15rem] sm:text-[1.35rem] lg:text-[1.5rem] font-light leading-snug transition-colors duration-200",
                     open === i
                       ? "text-[#f0ece3]"
-                      : "text-[#f0ece3]/75 group-hover:text-[#f0ece3]",
+                      : "text-[#f0ece3]/85 group-hover:text-[#f0ece3]",
                   ].join(" ")}
                   style={{ fontFamily: "'Cormorant Garamond', serif" }}
                 >

@@ -76,11 +76,11 @@ export default function Hero() {
         >
           Urszula
           <br />
-          <em className="italic text-[#f0ece3]/42">Wolak</em>
+          <em className="italic text-[#f0ece3]/50">Wolak</em>
         </h1>
 
         {/* Opis */}
-        <p className="text-xs sm:text-base font-light leading-[1.85] text-[#f0ece3]/38 mb-5 sm:mb-6 max-w-xs animate-[fadeUp_1s_ease_0.58s_both]">
+        <p className="text-xs sm:text-base font-light leading-[1.85] text-secondary mb-5 sm:mb-6 max-w-xs animate-[fadeUp_1s_ease_0.58s_both]">
           Tatuaże, które przyciągają wzrok - od dużych projektów po
           mikrotatuaże.
         </p>

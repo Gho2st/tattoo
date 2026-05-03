@@ -23,7 +23,7 @@ export default function CTA() {
             <em className="block italic text-[#f0ece3]/40">Porozmawiajmy</em>
           </h2>
 
-          <p className="text-sm font-light leading-relaxed text-[#f0ece3]/38 max-w-md mb-10">
+          <p className="text-sm font-light leading-relaxed text-secondary max-w-md mb-10">
             Napisz do mnie — opowiedz o swoim pomyśle, miejscu na ciele i
             inspiracjach. Odpowiem w ciągu 48 godzin.
           </p>

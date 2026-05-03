@@ -12,14 +12,13 @@ export default function About() {
   return (
     <section
       id="o-mnie"
-      className="bg-[#0a0a08] px-5 py-16 flex flex-col gap-12 sm:px-8 sm:py-20 lg:px-20 lg:py-28"
-      style={{ fontFamily: "'Montserrat', sans-serif" }}
+      className="bg-primary px-5 py-16 flex flex-col gap-12 sm:px-8 sm:py-20 lg:px-20 lg:py-28"
     >
       {/* ── Top: zdjęcie + tekst ── */}
       <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-16 xl:gap-24">
         {/* Zdjęcie — mobile full width, desktop ~połowa */}
-        <div className="relative w-full lg:w-[45%] lg:flex-shrink-0">
-          <div className="relative w-full aspect-[4/5] overflow-hidden">
+        <div className="relative w-full lg:w-[45%] lg:shrink-0">
+          <div className="relative w-full aspect-4/5 overflow-hidden">
             <Image
               src="/images/ula.png"
               alt="Urszula Wolak — tatuażystka Kraków"
@@ -31,13 +30,10 @@ export default function About() {
 
           {/* Badge na zdjęciu */}
           <div className="absolute bottom-4 right-4 bg-[#0a0a08]/88 border border-[#c9a96e]/25 px-3.5 py-2.5 sm:bottom-5 sm:right-5">
-            <span className="block text-[0.48rem] tracking-[0.28em] uppercase text-[#c9a96e] mb-1">
+            <span className="block text-xs tracking-wide uppercase text-[#c9a96e] mb-1">
               Kult Tattoo
             </span>
-            <span
-              className="block text-[1.5rem] font-light leading-none text-[#f0ece3]"
-              style={{ fontFamily: "'Cormorant Garamond', serif" }}
-            >
+            <span className="block text-[1.5rem] font-light leading-none text-primary">
               Kraków
             </span>
           </div>
@@ -46,13 +42,13 @@ export default function About() {
         {/* Tekst */}
         <div className="flex flex-col gap-5 lg:pt-2">
           {/* Eyebrow */}
-          <span className="flex items-center gap-3 text-[0.48rem] sm:text-[0.5rem] tracking-[0.38em] uppercase text-[#c9a96e]">
+          <span className="flex items-center gap-3 text-xs tracking-wide uppercase text-[#c9a96e]">
             <span className="block w-6 h-px bg-[#c9a96e]" />O mnie
           </span>
 
           {/* Heading */}
           <h2
-            className="text-[2.4rem] sm:text-[3rem] lg:text-[3.8rem] font-light leading-[1.02] text-[#f0ece3] m-0"
+            className="text-3xl sm:text-4xl lg:text-6xl font-light leading-[1.02] text-[#f0ece3] m-0"
             style={{ fontFamily: "'Cormorant Garamond', serif" }}
           >
             Cześć, jestem
@@ -60,13 +56,13 @@ export default function About() {
           </h2>
 
           {/* Opis */}
-          <p className="text-xs sm:text-base font-light leading-[1.9] text-[#f0ece3]/48 m-0">
+          <p className="text-xs sm:text-base font-light leading-[1.9] text-secondary m-0">
             Jestem tatuażystką w Kult Tattoo w Krakowie. Studiowałam
             projektowanie wnętrz i przestrzeni — to wykształcenie daje mi
             solidne podstawy w kompozycji, proporcjach i harmonii, które
             przenoszę bezpośrednio na skórę.
           </p>
-          <p className="text-xs sm:text-base font-light leading-[1.9] text-[#f0ece3]/48 m-0">
+          <p className="text-xs sm:text-base font-light leading-[1.9] text-secondary m-0">
             Regularnie uczestniczę w seminariach i szkoleniach, bo ciągły rozwój
             to dla mnie podstawa. Pracuję w kolorze i szarościach — chętnie
             łączę różne inspiracje w jeden spójny, przemyślany projekt.
@@ -77,7 +73,7 @@ export default function About() {
             {tags.map((tag) => (
               <span
                 key={tag}
-                className="text-[0.48rem] sm:text-[0.5rem] tracking-[0.2em] uppercase text-[#c9a96e]/65 border border-[#c9a96e]/18 px-3 py-1.5"
+                className="text-[0.48rem] tracking-[0.2em] uppercase text-[#c9a96e]/65 border border-[#c9a96e]/18 px-3 py-1.5"
               >
                 {tag}
               </span>
@@ -87,7 +83,7 @@ export default function About() {
           {/* CTA link */}
           <Link
             href="/#portfolio"
-            className="inline-flex items-center gap-3 mt-2 text-[0.56rem] sm:text-[0.6rem] tracking-[0.26em] uppercase text-[#f0ece3]/70 hover:text-[#f0ece3] no-underline transition-colors duration-200 group"
+            className="inline-flex items-center gap-3 mt-2 text-xs  tracking-[0.26em] uppercase text-seocondary hover:text-[#f0ece3] no-underline transition-colors duration-200 group"
           >
             <span className="block w-8 h-px bg-[#c9a96e] transition-all duration-300 group-hover:w-12" />
             Zobacz portfolio
@@ -103,12 +99,12 @@ export default function About() {
             className="bg-[#0a0a08] px-4 py-5 sm:px-6 sm:py-6 flex flex-col gap-1.5"
           >
             <span
-              className="text-[2.2rem] sm:text-[2.8rem] font-light leading-none text-[#f0ece3]"
+              className="text-xl sm:text-4xl font-light leading-none text-primary"
               style={{ fontFamily: "'Cormorant Garamond', serif" }}
             >
               {num}
               {suffix && (
-                <span className="text-[1.1rem] sm:text-[1.4rem] text-[#c9a96e]">
+                <span className="text-base sm:text-lg text-[#c9a96e]">
                   {suffix}
                 </span>
               )}

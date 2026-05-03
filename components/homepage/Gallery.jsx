@@ -194,7 +194,7 @@ export default function Gallery() {
       {hasMore && (
         <button
           onClick={() => setVisible((v) => v + PAGE_SIZE)}
-          className="w-full mt-[3px] border border-[#c9a96e]/12 hover:border-[#c9a96e]/35 bg-transparent text-xs tracking-widest uppercase text-[#f0ece3]/30 hover:text-[#f0ece3]/60 py-5 transition-all duration-200 cursor-pointer"
+          className="w-full mt-3 border border-[#c9a96e]/12 hover:border-[#c9a96e]/35 bg-transparent text-xs tracking-widest uppercase text-[#f0ece3]/50 hover:text-[#f0ece3]/60 py-5 transition-all duration-200 cursor-pointer"
         >
           · · · Zobacz więcej
         </button>

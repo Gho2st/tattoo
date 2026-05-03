@@ -59,14 +59,11 @@ export default function ContactForm() {
     return (
       <div className="flex flex-col items-center justify-center py-20 gap-6 text-center">
         <span className="block w-10 h-px bg-[#c9a96e] mx-auto" />
-        <h2
-          className="text-4xl sm:text-5xl font-light text-[#f0ece3]"
-          style={{ fontFamily: "'Cormorant Garamond', serif" }}
-        >
+        <h2 className="text-4xl sm:text-5xl font-light text-[#f0ece3]">
           Dzięki,
           <em className="block italic text-[#f0ece3]/40">odezwę się wkrótce</em>
         </h2>
-        <p className="text-sm font-light leading-relaxed text-[#f0ece3]/40 max-w-sm">
+        <p className="text-sm font-light leading-relaxed text-[#f0ece3]/80 max-w-sm">
           Odpowiadam w ciągu 48 godzin. Do zobaczenia!
         </p>
       </div>
@@ -78,7 +75,7 @@ export default function ContactForm() {
       {/* Divider mobile */}
       <div className="flex items-center gap-4 mb-8 lg:hidden">
         <div className="flex-1 h-px bg-[#c9a96e]/10" />
-        <span className="text-xs tracking-widest uppercase text-[#c9a96e]/30">
+        <span className="text-xs tracking-widest uppercase text-[#c9a96e]/80">
           formularz
         </span>
         <div className="flex-1 h-px bg-[#c9a96e]/10" />
@@ -246,9 +243,9 @@ function Field({ label, required, last, children }) {
         last ? "border-b border-b-[#c9a96e]/12" : "",
       ].join(" ")}
     >
-      <label className="text-xs tracking-widest uppercase text-[#c9a96e]/60 font-medium">
+      <label className="text-xs tracking-widest uppercase text-[#c9a96e]/80 font-medium">
         {label}
-        {required && <span className="ml-1 text-[#c9a96e]/30">*</span>}
+        {required && <span className="ml-1 text-[#c9a96e]/50">*</span>}
       </label>
       {children}
     </div>
