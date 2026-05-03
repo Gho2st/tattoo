@@ -210,7 +210,7 @@ export default function ContactForm() {
         {isPending ? "Wysyłanie..." : "Wyślij zapytanie"}
       </button>
 
-      <p className="mt-5 text-center text-sm leading-relaxed text-[#f0ece3]/20">
+      <p className="mt-5 text-center text-sm leading-relaxed text-[#f0ece3]/30">
         Odpowiadam w ciągu 48 godzin.
         <br />
         Wycenę i szczegóły omówimy po pierwszym kontakcie.
