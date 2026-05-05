@@ -30,7 +30,7 @@ export default function Specializations() {
 
   return (
     <section
-      className="bg-[#0a0a08] px-5 py-16 sm:px-8 sm:py-20 lg:px-20 lg:py-28"
+      className="bg-primary px-5 py-16 sm:px-8 sm:py-20 lg:px-20 lg:py-28"
       id="faq"
     >
       {/* Eyebrow */}
