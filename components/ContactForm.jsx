@@ -224,7 +224,7 @@ export default function ContactForm() {
 const inp = [
   "w-full bg-transparent border-none outline-none",
   "text-base sm:text-lg font-light text-[#f0ece3]",
-  "placeholder:text-[#f0ece3]/18 pt-1 pb-1",
+  "placeholder:text-[#f0ece3]/50 pt-1 pb-1",
 ].join(" ");
 
 const pill = (active) =>
@@ -232,7 +232,7 @@ const pill = (active) =>
     "text-sm tracking-wider uppercase px-5 py-2.5 border cursor-pointer transition-all duration-200",
     active
       ? "bg-[#c9a96e] text-[#0a0a08] border-[#c9a96e] font-medium"
-      : "bg-transparent text-[#f0ece3]/40 border-[#c9a96e]/20 hover:text-[#f0ece3]/70 hover:border-[#c9a96e]/40",
+      : "bg-transparent text-[#f0ece3]/50 border-[#c9a96e]/20 hover:text-[#f0ece3]/70 hover:border-[#c9a96e]/40",
   ].join(" ");
 
 function Field({ label, required, last, children }) {
@@ -274,10 +274,10 @@ function Upload({ files, onClick, hint, sub }) {
             <path d="M10 3v10M5 8l5-5 5 5" />
             <path d="M3 15h14" />
           </svg>
-          <span className="text-sm tracking-wider uppercase text-[#f0ece3]/28">
+          <span className="text-sm tracking-wider uppercase text-[#f0ece3]/50">
             {hint}
           </span>
-          <span className="text-sm text-[#f0ece3]/16">{sub}</span>
+          <span className="text-sm text-[#f0ece3]/30">{sub}</span>
         </>
       )}
     </div>

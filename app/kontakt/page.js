@@ -51,7 +51,7 @@ export default function KontaktPage() {
                 key={label}
                 className="flex items-center justify-between px-5 py-4 border-b border-[#c9a96e]/8 last:border-b-0"
               >
-                <span className="text-xs tracking-widest uppercase text-[#c9a96e]/65">
+                <span className="text-xs tracking-widest uppercase text-[#c9a96e]/85">
                   {label}
                 </span>
                 {href ? (
