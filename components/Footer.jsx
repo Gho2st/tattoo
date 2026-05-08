@@ -18,9 +18,7 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer
-      className="bg-[#0a0a08] border-t border-[#c9a96e]/10"
-    >
+    <footer className="bg-[#0a0a08] border-t border-[#c9a96e]/10">
       {/* ── Top grid ── */}
       <div className="px-5 pt-12 pb-10 sm:px-8 lg:px-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr] gap-10 lg:gap-16 border-b border-[#c9a96e]/8">
         {/* Brand */}
@@ -36,7 +34,7 @@ export default function Footer() {
               Tattoo Artist · Kraków
             </span>
           </Link>
-          <p className="text-xs font-light leading-relaxed text-secondary max-w-xs">
+          <p className="text-xs 2xl:text-sm font-light leading-relaxed text-secondary max-w-xs">
             Tatuaże w kolorze i szarościach, covery oraz autorskie kompozycje.
           </p>
           {/* Logo */}
@@ -51,7 +49,7 @@ export default function Footer() {
 
         {/* Nawigacja */}
         <div>
-          <span className="block text-xs tracking-[0.32em] uppercase text-[#c9a96e]/85 mb-5">
+          <span className="block text-xs 2xl:text-sm tracking-[0.32em] uppercase text-[#c9a96e]/85 mb-5">
             Nawigacja
           </span>
           <nav className="flex flex-col gap-3">
@@ -59,7 +57,7 @@ export default function Footer() {
               <Link
                 key={href}
                 href={href}
-                className="text-xs font-light tracking-wide text-secondary hover:text-[#c9a96e] no-underline transition-colors duration-200"
+                className="text-xs 2xl:text-sm font-light tracking-wide text-secondary hover:text-[#c9a96e] no-underline transition-colors duration-200"
               >
                 {label}
               </Link>
@@ -69,7 +67,7 @@ export default function Footer() {
 
         {/* Kontakt */}
         <div>
-          <span className="block text-xs tracking-[0.32em] uppercase text-[#c9a96e]/85 mb-5">
+          <span className="block text-xs 2xl:text-sm tracking-[0.32em] uppercase text-[#c9a96e]/85 mb-5">
             Kontakt
           </span>
           <div className="flex flex-col gap-3">
@@ -78,7 +76,7 @@ export default function Footer() {
                 <a
                   key={label}
                   href={href}
-                  className="text-xs font-light tracking-wide text-secondary hover:text-[#c9a96e] no-underline transition-colors duration-200"
+                  className="text-xs 2xl:text-sm font-light tracking-wide text-secondary hover:text-[#c9a96e] no-underline transition-colors duration-200"
                 >
                   {label}
                 </a>

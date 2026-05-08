@@ -12,12 +12,12 @@ export default function About() {
   return (
     <section
       id="o-mnie"
-      className="bg-primary px-5 py-16 flex flex-col gap-12 sm:px-8 sm:py-20 lg:px-20 lg:py-28"
+      className="bg-primary px-5 py-16 flex flex-col gap-12 sm:px-8 sm:py-20 lg:px-20 lg:py-28 2xl:px-[12%]"
     >
       {/* ── Top: zdjęcie + tekst ── */}
       <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-16 xl:gap-24">
         {/* Zdjęcie — mobile full width, desktop ~połowa */}
-        <div className="relative w-full lg:w-[45%] lg:shrink-0">
+        <div className="relative w-full lg:w-[45%] 2xl:w-[30%]  lg:shrink-0">
           <div className="relative w-full aspect-4/5 overflow-hidden">
             <Image
               src="/images/ula.png"
@@ -60,13 +60,13 @@ export default function About() {
           </h2>
 
           {/* Opis */}
-          <p className="text-xs sm:text-base font-light leading-[1.9] text-secondary m-0">
+          <p className="text-xs sm:text-base 2xl:text-lg font-light leading-[1.9] text-secondary m-0">
             Jestem tatuażystką w Kult Tattoo w Krakowie. Studiowałam
             projektowanie wnętrz i przestrzeni — to wykształcenie daje mi
             solidne podstawy w kompozycji, proporcjach i harmonii, które
             przenoszę bezpośrednio na skórę.
           </p>
-          <p className="text-xs sm:text-base font-light leading-[1.9] text-secondary m-0">
+          <p className="text-xs sm:text-base 2xl:text-lg font-light leading-[1.9] text-secondary m-0">
             Regularnie uczestniczę w seminariach i szkoleniach, bo ciągły rozwój
             to dla mnie podstawa. Pracuję w kolorze i szarościach — chętnie
             łączę różne inspiracje w jeden spójny, przemyślany projekt.
@@ -77,7 +77,7 @@ export default function About() {
             {tags.map((tag) => (
               <span
                 key={tag}
-                className="text-[0.48rem] tracking-[0.2em] uppercase text-[#c9a96e]/65 border border-[#c9a96e]/18 px-3 py-1.5"
+                className="text-[0.48rem] 2xl:text-xs tracking-[0.2em] uppercase text-[#c9a96e]/65 border border-[#c9a96e]/18 px-3 py-1.5"
               >
                 {tag}
               </span>
@@ -113,7 +113,7 @@ export default function About() {
                 </span>
               )}
             </span>
-            <span className="text-[0.6rem] sm:text-[0.65rem] tracking-[0.22em] uppercase text-[#f0ece3]/28">
+            <span className="text-[0.6rem] sm:text-[0.65rem] tracking-[0.22em] uppercase text-[#f0ece3]/40">
               {label}
             </span>
           </div>

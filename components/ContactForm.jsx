@@ -30,7 +30,6 @@ export default function ContactForm() {
     e.preventDefault();
     setError("");
 
-    // Walidacja rozmiaru załączników po stronie klienta
     const allFiles = [...inspirationFiles, ...coverFiles];
     const totalMB =
       allFiles.reduce((sum, f) => sum + f.size, 0) / (1024 * 1024);
@@ -59,7 +58,10 @@ export default function ContactForm() {
     return (
       <div className="flex flex-col items-center justify-center py-20 gap-6 text-center">
         <span className="block w-10 h-px bg-[#c9a96e] mx-auto" />
-        <h2 className="text-4xl sm:text-5xl font-light text-[#f0ece3]">
+        <h2
+          className="text-4xl sm:text-5xl font-light text-[#f0ece3]"
+          style={{ fontFamily: "'Cormorant Garamond', serif" }}
+        >
           Dzięki,
           <em className="block italic text-[#f0ece3]/40">odezwę się wkrótce</em>
         </h2>
@@ -75,7 +77,7 @@ export default function ContactForm() {
       {/* Divider mobile */}
       <div className="flex items-center gap-4 mb-8 lg:hidden">
         <div className="flex-1 h-px bg-[#c9a96e]/10" />
-        <span className="text-xs tracking-widest uppercase text-[#c9a96e]/80">
+        <span className="text-[0.65rem] tracking-[0.22em] uppercase text-[#c9a96e]/80">
           formularz
         </span>
         <div className="flex-1 h-px bg-[#c9a96e]/10" />
@@ -104,7 +106,7 @@ export default function ContactForm() {
       </Field>
 
       <Field label="Przybliżony rozmiar">
-        <div className="flex flex-wrap gap-2 pt-2">
+        <div className="flex flex-wrap gap-2 pt-1">
           {SIZES.map(({ label, value }) => (
             <button
               key={value}
@@ -119,7 +121,7 @@ export default function ContactForm() {
       </Field>
 
       <Field label="Czy to cover?" required>
-        <div className="flex gap-2 pt-2">
+        <div className="flex gap-2 pt-1">
           <button
             type="button"
             onClick={() => setIsCover(false)}
@@ -201,8 +203,8 @@ export default function ContactForm() {
         type="submit"
         disabled={isPending}
         className={[
-          "mt-10 w-full text-sm font-medium tracking-widest uppercase",
-          "text-[#0a0a08] bg-[#c9a96e] hover:bg-[#d4b580] py-5",
+          "mt-10 w-full text-xs sm:text-sm font-medium tracking-[0.22em] uppercase",
+          "text-[#0a0a08] bg-[#c9a96e] hover:bg-[#d4b580] py-4 sm:py-5",
           "transition-colors duration-200",
           isPending ? "opacity-60 cursor-not-allowed" : "cursor-pointer",
         ].join(" ")}
@@ -210,7 +212,7 @@ export default function ContactForm() {
         {isPending ? "Wysyłanie..." : "Wyślij zapytanie"}
       </button>
 
-      <p className="mt-5 text-center text-sm leading-relaxed text-[#f0ece3]/30">
+      <p className="mt-5 text-center text-xs leading-relaxed text-[#f0ece3]/30">
         Odpowiadam w ciągu 48 godzin.
         <br />
         Wycenę i szczegóły omówimy po pierwszym kontakcie.
@@ -224,15 +226,15 @@ export default function ContactForm() {
 const inp = [
   "w-full bg-transparent border-none outline-none",
   "text-base sm:text-lg font-light text-[#f0ece3]",
-  "placeholder:text-[#f0ece3]/50 pt-1 pb-1",
+  "placeholder:text-[#f0ece3]/40 pt-1 pb-1",
 ].join(" ");
 
 const pill = (active) =>
   [
-    "text-sm tracking-wider uppercase px-5 py-2.5 border cursor-pointer transition-all duration-200",
+    "text-[0.7rem] sm:text-xs tracking-[0.18em] uppercase px-4 py-2.5 border cursor-pointer transition-all duration-200",
     active
       ? "bg-[#c9a96e] text-[#0a0a08] border-[#c9a96e] font-medium"
-      : "bg-transparent text-[#f0ece3]/50 border-[#c9a96e]/20 hover:text-[#f0ece3]/70 hover:border-[#c9a96e]/40",
+      : "bg-transparent text-[#f0ece3]/55 border-[#c9a96e]/20 hover:text-[#f0ece3]/80 hover:border-[#c9a96e]/40",
   ].join(" ");
 
 function Field({ label, required, last, children }) {
@@ -243,7 +245,7 @@ function Field({ label, required, last, children }) {
         last ? "border-b border-b-[#c9a96e]/12" : "",
       ].join(" ")}
     >
-      <label className="text-xs tracking-widest uppercase text-[#c9a96e]/80 font-medium">
+      <label className="text-[0.65rem] tracking-[0.22em] uppercase text-[#c9a96e]/85 font-medium">
         {label}
         {required && <span className="ml-1 text-[#c9a96e]/50">*</span>}
       </label>
@@ -256,10 +258,10 @@ function Upload({ files, onClick, hint, sub }) {
   return (
     <div
       onClick={onClick}
-      className="mt-2 border border-dashed border-[#c9a96e]/20 hover:border-[#c9a96e]/50 px-6 py-8 flex flex-col items-center gap-3 cursor-pointer transition-colors duration-200"
+      className="mt-2 border border-dashed border-[#c9a96e]/20 hover:border-[#c9a96e]/50 px-6 py-7 flex flex-col items-center gap-3 cursor-pointer transition-colors duration-200"
     >
       {files.length > 0 ? (
-        <p className="text-sm text-[#c9a96e]/70 text-center leading-relaxed">
+        <p className="text-sm text-[#c9a96e]/70 text-center leading-relaxed break-all">
           {files.map((f) => f.name).join(", ")}
         </p>
       ) : (
@@ -274,10 +276,10 @@ function Upload({ files, onClick, hint, sub }) {
             <path d="M10 3v10M5 8l5-5 5 5" />
             <path d="M3 15h14" />
           </svg>
-          <span className="text-sm tracking-wider uppercase text-[#f0ece3]/50">
+          <span className="text-[0.7rem] tracking-[0.2em] uppercase text-[#f0ece3]/55">
             {hint}
           </span>
-          <span className="text-sm text-[#f0ece3]/30">{sub}</span>
+          <span className="text-xs text-[#f0ece3]/35">{sub}</span>
         </>
       )}
     </div>

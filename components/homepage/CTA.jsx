@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function CTA() {
   return (
-    <section className="bg-primary border-t border-[#c9a96e]/10 px-5 py-20 sm:px-8 sm:py-24 lg:px-20 lg:py-32">
+    <section className="bg-primary border-t border-[#c9a96e]/10 px-5 py-20 sm:px-8 sm:py-24 lg:px-20 lg:py-32 2xl:px-[12%]">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         {/* ── Lewa: tekst + CTA ── */}
         <div className="flex flex-col">

@@ -71,7 +71,7 @@ export default function Navbar() {
             <li key={link.href}>
               <Link
                 href={link.href}
-                className="group relative text-xs tracking-[0.22em] uppercase text-white/80 hover:text-[#f0ece3] transition-colors duration-200 no-underline"
+                className="group relative text-xs 2xl:text-sm tracking-[0.22em] uppercase text-white/80 hover:text-[#f0ece3] transition-colors duration-200 no-underline"
                 style={{ fontFamily: "'Montserrat', sans-serif" }}
               >
                 {link.label}
@@ -86,7 +86,7 @@ export default function Navbar() {
           <div className="w-px h-6 bg-[#c9a96e]/20" />
           <Link
             href="/kontakt"
-            className="text-[0.58rem] font-medium tracking-[0.26em] uppercase bg-[#c9a96e] hover:bg-[#d4b580] text-[#0a0a08] px-5 py-2.5 transition-colors duration-200 hover:-translate-y-px no-underline"
+            className="text-[0.58rem] 2xl:text-xs font-medium tracking-[0.26em] uppercase bg-[#c9a96e] hover:bg-[#d4b580] text-[#0a0a08] px-5 py-2.5 transition-colors duration-200 hover:-translate-y-px no-underline"
             style={{ fontFamily: "'Montserrat', sans-serif" }}
           >
             Umów sesję
