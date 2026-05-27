@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useTransition } from "react";
-import { sendContactEmail } from "@/actions/sendContactEmail";
+import { sendContactEmail } from "../actions/sendContactEmail";
 
 const SIZES = [
   { label: "Mały (do 5 cm)", value: "maly" },
