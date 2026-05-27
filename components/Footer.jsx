@@ -10,7 +10,7 @@ const NAV_LINKS = [
 ];
 
 const CONTACT = [
-  { label: "ula@kulttattoo.pl", href: "mailto:ula@kulttattoo.pl" },
+  { label: "wolaktattoo@gmail.com", href: "mailto:wolaktattoo@gmail.com" },
   { label: "+48 000 000 000", href: "tel:+48000000000" },
 ];
 

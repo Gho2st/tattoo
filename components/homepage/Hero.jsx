@@ -3,31 +3,33 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect, useRef, useCallback } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const SLIDES = [
   "/images/hero/1.webp",
   "/images/hero/2.webp",
   "/images/hero/3.webp",
   "/images/hero/4.webp",
-  "/images/hero/5.webp",
 ];
 
 const INTERVAL_MS = 5000;
-const SWIPE_THRESHOLD = 40;
+const SWIPE_THRESHOLD = 50;
 
 export default function Hero() {
   const [current, setCurrent] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
   const timerRef = useRef(null);
   const touchStartX = useRef(null);
-  const touchStartY = useRef(null);
-  const isDragging = useRef(false);
 
+  // Timer
   const startTimer = useCallback(() => {
     if (timerRef.current) clearInterval(timerRef.current);
-    timerRef.current = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % SLIDES.length);
-    }, INTERVAL_MS);
-  }, []);
+    if (!isPaused) {
+      timerRef.current = setInterval(() => {
+        setCurrent((prev) => (prev + 1) % SLIDES.length);
+      }, INTERVAL_MS);
+    }
+  }, [isPaused]);
 
   useEffect(() => {
     startTimer();
@@ -35,6 +37,10 @@ export default function Hero() {
       if (timerRef.current) clearInterval(timerRef.current);
     };
   }, [startTimer]);
+
+  // Pauza przy najechaniu myszką (lepsze UX)
+  const pauseTimer = () => setIsPaused(true);
+  const resumeTimer = () => setIsPaused(false);
 
   const goTo = (i) => {
     setCurrent(i);
@@ -51,186 +57,129 @@ export default function Hero() {
     startTimer();
   };
 
-  /* ── Touch / Swipe ── */
+  /* ── Swipe ── */
   const onTouchStart = (e) => {
     touchStartX.current = e.touches[0].clientX;
-    touchStartY.current = e.touches[0].clientY;
-    isDragging.current = false;
-  };
-
-  const onTouchMove = (e) => {
-    if (touchStartX.current === null) return;
-    const dx = Math.abs(e.touches[0].clientX - touchStartX.current);
-    const dy = Math.abs(e.touches[0].clientY - touchStartY.current);
-    // jeśli ruch poziomy dominuje — blokuj scroll pionowy
-    if (dx > dy && dx > 10) {
-      isDragging.current = true;
-      e.preventDefault();
-    }
   };
 
   const onTouchEnd = (e) => {
     if (touchStartX.current === null) return;
-    const dx = e.changedTouches[0].clientX - touchStartX.current;
-    if (Math.abs(dx) > SWIPE_THRESHOLD) {
-      dx < 0 ? next() : prev();
+    const diff = touchStartX.current - e.changedTouches[0].clientX;
+
+    if (Math.abs(diff) > SWIPE_THRESHOLD) {
+      diff > 0 ? next() : prev();
     }
     touchStartX.current = null;
-    touchStartY.current = null;
-    isDragging.current = false;
   };
 
   return (
     <section
       className="relative w-full min-h-svh bg-[#0a0a08] flex flex-col overflow-hidden"
+      onMouseEnter={pauseTimer}
+      onMouseLeave={resumeTimer}
       onTouchStart={onTouchStart}
-      onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
     >
-      {/* ── Slideshow tło ── */}
+      {/* Slides */}
       {SLIDES.map((src, i) => (
         <Image
           key={src}
           src={src}
-          alt={`Tatuaż Urszula Wolak ${i + 1}`}
+          alt={`Urszula Wolak - tatuaż realistyczny ${i + 1}`}
           fill
           priority={i === 0}
+          loading={i === 0 ? "eager" : "lazy"}
           sizes="100vw"
-          className={[
-            "object-cover object-center transition-opacity duration-[1400ms] ease-in-out",
-            i === current ? "opacity-75" : "opacity-0",
-          ].join(" ")}
+          className={`object-cover object-center transition-opacity duration-1000 ease-out ${
+            i === current ? "opacity-80" : "opacity-0"
+          }`}
+          quality={92}
         />
       ))}
 
-      {/* Gradient — mocniejszy na dole */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a08] via-[#0a0a08]/45 to-[#0a0a08]/10" />
+      {/* Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a08] via-[#0a0a08]/60 to-transparent" />
 
-      {/* ── Strzałki (tylko desktop) ── */}
+      {/* Strzałki */}
       <button
         onClick={prev}
         aria-label="Poprzedni slajd"
-        className="
-          hidden lg:flex
-          absolute left-6 top-1/2 -translate-y-1/2 z-20
-          items-center justify-center
-          w-11 h-11
-          border border-[#f0ece3]/20 hover:border-[#c9a96e]/60
-          text-[#f0ece3]/40 hover:text-[#c9a96e]
-          transition-all duration-300
-          group
-        "
+        className="hidden lg:flex absolute left-6 top-1/2 -translate-y-1/2 z-20 items-center justify-center w-12 h-12 border border-[#f0ece3]/20 hover:border-[#c9a96e] text-[#f0ece3]/40 hover:text-[#c9a96e] rounded-full transition-all duration-300 group"
       >
-        <svg
-          width="18"
-          height="18"
-          viewBox="0 0 18 18"
-          fill="none"
-          className="transition-transform duration-300 group-hover:-translate-x-0.5"
-        >
-          <path
-            d="M11 4L6 9L11 14"
-            stroke="currentColor"
-            strokeWidth="1.2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
+        <ChevronLeft
+          size={20}
+          strokeWidth={2}
+          className="transition-transform group-hover:-translate-x-0.5"
+        />
       </button>
 
       <button
         onClick={next}
         aria-label="Następny slajd"
-        className="
-          hidden lg:flex
-          absolute right-6 top-1/2 -translate-y-1/2 z-20
-          items-center justify-center
-          w-11 h-11
-          border border-[#f0ece3]/20 hover:border-[#c9a96e]/60
-          text-[#f0ece3]/40 hover:text-[#c9a96e]
-          transition-all duration-300
-          group
-        "
+        className="hidden lg:flex absolute right-6 top-1/2 -translate-y-1/2 z-20 items-center justify-center w-12 h-12 border border-[#f0ece3]/20 hover:border-[#c9a96e] text-[#f0ece3]/40 hover:text-[#c9a96e] rounded-full transition-all duration-300 group"
       >
-        <svg
-          width="18"
-          height="18"
-          viewBox="0 0 18 18"
-          fill="none"
-          className="transition-transform duration-300 group-hover:translate-x-0.5"
-        >
-          <path
-            d="M7 4L12 9L7 14"
-            stroke="currentColor"
-            strokeWidth="1.2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
+        <ChevronRight
+          size={20}
+          strokeWidth={2}
+          className="transition-transform group-hover:translate-x-0.5"
+        />
       </button>
 
-      {/* ── Główna treść — bottom ── */}
-      <div className="relative z-10 mt-auto flex flex-col px-5 pb-8 gap-0 sm:px-8 sm:pb-10 lg:px-20 lg:pb-16 2xl:p-32">
-        {/* Eyebrow */}
-        <span className="text-[0.65rem] 2xl:text-xs tracking-[0.38em] uppercase text-[#c9a96e] mb-3 animate-[fadeUp_0.8s_ease_0.3s_both]">
-          Profesjonalne i indywidualne podejście
+      {/* Treść */}
+      <div className="relative z-10 mt-auto flex flex-col px-5 pb-10 sm:px-8 sm:pb-12 lg:px-20 lg:pb-20 2xl:pb-32">
+        <span className="text-[0.7rem] tracking-[0.4em] uppercase text-[#c9a96e] mb-4">
+          Profesjonalne tatuaże w Krakowie
         </span>
 
-        {/* Headline */}
         <h1
-          className="font-light leading-snug text-[#f0ece3] mt-4 mb-2 animate-[fadeUp_0.9s_ease_0.45s_both] text-2xl sm:text-3xl lg:text-4xl 2xl:text-5xl"
+          className="font-light leading-[1.05] text-[#f0ece3] text-3xl sm:text-4xl lg:text-5xl 2xl:text-6xl mb-6"
           style={{ fontFamily: "'Cormorant Garamond', serif" }}
         >
-          Urszula Wolak <br /> Tatuaż realistyczny i mikrorealizm w Krakowie
+          Urszula Wolak
+          <br />
+          <span className="text-[#f0ece3]/80">
+            {" "}
+            Tatuaż realistyczny i mikrorealizm
+          </span>
         </h1>
 
-        {/* Opis */}
-        <p className="text-xs sm:text-base 2xl:text-lg font-light leading-[1.85] text-[#f0ece3]/55 mb-5 sm:mb-6 max-w-xs animate-[fadeUp_1s_ease_0.58s_both]">
-          Tatuaże, które przyciągają wzrok - od dużych projektów po
-          mikrotatuaże.
+        <p className="max-w-md text-base sm:text-lg text-[#f0ece3]/70 mb-8">
+          Indywidualne projekty • Realizm • Mikrorealizm • Kolor • Covery
         </p>
 
         {/* Dots + CTA */}
-        <div className="flex items-center justify-between gap-4 animate-[fadeUp_1s_ease_0.68s_both]">
-          {/* Slide dots */}
-          <div className="flex items-center gap-1.5">
+        <div className="flex items-center justify-between">
+          <div className="flex gap-2">
             {SLIDES.map((_, i) => (
               <button
                 key={i}
                 onClick={() => goTo(i)}
-                aria-label={`Slajd ${i + 1}`}
-                className={[
-                  "h-0.5 rounded-full border-none p-0 cursor-pointer bg-[#c9a96e] transition-all duration-300",
-                  i === current ? "w-6 opacity-100" : "w-2 opacity-25",
-                ].join(" ")}
+                aria-label={`Idź do slajdu ${i + 1}`}
+                className={`h-[3px] rounded-full transition-all duration-500 ${
+                  i === current
+                    ? "w-10 bg-[#c9a96e]"
+                    : "w-5 bg-[#f0ece3]/30 hover:bg-[#f0ece3]/50"
+                }`}
               />
             ))}
           </div>
 
-          {/* CTA row */}
-          <div className="flex items-center gap-2 sm:gap-3">
+          <div className="flex items-center gap-3">
             <Link
               href="/#portfolio"
-              className="text-[0.55rem] sm:text-[0.58rem] 2xl:text-xs tracking-[0.2em] uppercase text-[#f0ece3]/60 border border-[#f0ece3]/25 hover:border-[#f0ece3]/30 px-4 py-3 sm:px-5 transition-colors duration-200 no-underline whitespace-nowrap"
+              className="px-6 py-3.5 text-sm tracking-widest border border-[#f0ece3]/30 hover:border-[#f0ece3]/50 text-[#f0ece3]/80 hover:text-white transition-all"
             >
-              Portfolio
+              Zobacz portfolio
             </Link>
             <Link
               href="/kontakt"
-              className="text-[0.55rem] 2xl:text-xs sm:text-[0.6rem] tracking-[0.2em] uppercase font-medium text-[#0a0a08] bg-[#c9a96e] hover:bg-[#d4b580] px-5 py-3 sm:px-7 sm:py-3.5 transition-colors duration-200 no-underline whitespace-nowrap"
+              className="px-7 py-3.5 text-sm tracking-widest font-medium bg-[#c9a96e] hover:bg-[#d4b580] text-[#0a0a08] transition-all"
             >
               Umów sesję
             </Link>
           </div>
         </div>
       </div>
-
-      <style>{`
-        @keyframes fadeUp {
-          from { opacity: 0; transform: translateY(14px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-      `}</style>
     </section>
   );
 }

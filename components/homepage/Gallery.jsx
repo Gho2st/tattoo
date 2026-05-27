@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import Image from "next/image";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const ALL_ITEMS = [
   { src: "/images/realizm/1.webp", cat: "realizm" },
@@ -22,7 +23,6 @@ const ALL_ITEMS = [
   { src: "/images/kreskówki/2.webp", cat: "kreskówki" },
   { src: "/images/kreskówki/3.webp", cat: "kreskówki" },
   { src: "/images/kreskówki/4.webp", cat: "kreskówki" },
-  { src: "/images/kreskówki/5.webp", cat: "kreskówki" },
 ];
 
 const FILTERS = [
@@ -32,12 +32,12 @@ const FILTERS = [
   { label: "Kreskówki", value: "kreskówki" },
 ];
 
-const PAGE_SIZE = 6;
+const PAGE_SIZE = 8;
 
 export default function Gallery() {
   const [active, setActive] = useState("all");
   const [visible, setVisible] = useState(PAGE_SIZE);
-  const [lightbox, setLightbox] = useState(null); // index w filtered
+  const [lightboxIndex, setLightboxIndex] = useState(null); // zmieniona nazwa dla jasności
 
   const filtered =
     active === "all"
@@ -50,37 +50,37 @@ export default function Gallery() {
   const handleFilter = (val) => {
     setActive(val);
     setVisible(PAGE_SIZE);
-    setLightbox(null);
+    setLightboxIndex(null); // zamknięcie lightboxa przy zmianie filtra
   };
 
-  const openLightbox = (i) => setLightbox(i);
-  const closeLightbox = () => setLightbox(null);
-  const prev = useCallback(
-    () => setLightbox((i) => (i - 1 + filtered.length) % filtered.length),
-    [filtered.length],
-  );
-  const next = useCallback(
-    () => setLightbox((i) => (i + 1) % filtered.length),
-    [filtered.length],
-  );
+  const openLightbox = (index) => setLightboxIndex(index);
+  const closeLightbox = () => setLightboxIndex(null);
+
+  const prev = useCallback(() => {
+    setLightboxIndex((prev) => (prev - 1 + filtered.length) % filtered.length);
+  }, [filtered.length]);
+
+  const next = useCallback(() => {
+    setLightboxIndex((prev) => (prev + 1) % filtered.length);
+  }, [filtered.length]);
 
   // Swipe
   const touchStartX = useRef(null);
-
   const handleTouchStart = (e) => {
     touchStartX.current = e.touches[0].clientX;
   };
-
   const handleTouchEnd = (e) => {
-    if (touchStartX.current === null) return;
+    if (!touchStartX.current) return;
     const diff = touchStartX.current - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 50) diff > 0 ? next() : prev();
+    if (Math.abs(diff) > 50) {
+      diff > 0 ? next() : prev();
+    }
     touchStartX.current = null;
   };
 
   // Klawiatura
   useEffect(() => {
-    if (lightbox === null) return;
+    if (lightboxIndex === null) return;
     const handler = (e) => {
       if (e.key === "ArrowRight") next();
       if (e.key === "ArrowLeft") prev();
@@ -88,100 +88,79 @@ export default function Gallery() {
     };
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
-  }, [lightbox, next, prev]);
+  }, [lightboxIndex, next, prev]);
 
-  // Blokuj scroll gdy lightbox otwarty
+  // Blokada scrolla
   useEffect(() => {
-    document.body.style.overflow = lightbox !== null ? "hidden" : "";
+    document.body.style.overflow = lightboxIndex !== null ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
-  }, [lightbox]);
+  }, [lightboxIndex]);
 
   return (
     <section
       id="portfolio"
-      className="bg-primary px-5 py-16 sm:px-8 sm:py-20 lg:px-20 lg:py-28 2xl:px-[12%]"
+      className="bg-primary py-12 sm:py-16 lg:py-20 px-5 lg:px-20 2xl:px-[12%]"
     >
-      {/* ── Header ── */}
-      <div className="flex items-end justify-between gap-8 mb-8 sm:mb-10">
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-8">
         <div>
-          <span className="flex items-center gap-3 text-xs tracking-widest uppercase text-[#c9a96e] mb-4">
+          <span className="flex items-center gap-3 text-xs tracking-widest uppercase text-[#c9a96e] mb-3">
             <span className="block w-6 h-px bg-[#c9a96e]" />
             Galeria
           </span>
           <h2
-            className="text-3xl sm:text-4xl lg:text-5xl font-light leading-none text-[#f0ece3] m-0"
+            className="text-3xl sm:text-4xl font-light leading-tight text-[#f0ece3]"
             style={{ fontFamily: "'Cormorant Garamond', serif" }}
           >
-            Portfolio tatuaży —
-            <em className="block italic text-[#f0ece3]/40"> moje prace</em>
+            Portfolio tatuaży
+            <em className="block italic text-[#f0ece3]/40 text-2xl sm:text-3xl">
+              — moje prace
+            </em>
           </h2>
         </div>
 
-        {/* Filtry pionowo */}
-        <div className="flex flex-col items-end gap-2 shrink-0">
+        <div className="flex flex-wrap gap-2 justify-end">
           {FILTERS.map(({ label, value }) => (
             <button
               key={value}
               onClick={() => handleFilter(value)}
-              className={[
-                "text-xs tracking-widest uppercase bg-transparent border-none cursor-pointer transition-colors duration-200 text-right",
+              className={`px-5 py-2 text-xs tracking-widest uppercase rounded-full border transition-all duration-200 whitespace-nowrap ${
                 active === value
-                  ? "text-[#c9a96e]"
-                  : "text-[#f0ece3]/28 hover:text-[#f0ece3]/55",
-              ].join(" ")}
+                  ? "bg-[#c9a96e] text-[#0a0a08] border-[#c9a96e]"
+                  : "border-[#c9a96e]/30 text-[#f0ece3]/60 hover:border-[#c9a96e]/60 hover:text-[#f0ece3]"
+              }`}
             >
               {label}
-              {active === value && (
-                <span className="inline-block w-3 h-px bg-[#c9a96e] ml-2 align-middle" />
-              )}
             </button>
           ))}
         </div>
       </div>
 
-      {/* ── Grid ── */}
-      <div className="grid grid-cols-2 gap-[3px]">
+      {/* Grid */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-[3px]">
         {shown.map((item, i) => (
           <button
             key={item.src}
             onClick={() => openLightbox(i)}
-            className="relative aspect-square overflow-hidden group cursor-pointer bg-[#111] border-none p-0"
+            className="relative aspect-square overflow-hidden group cursor-pointer bg-[#111]"
           >
             <Image
               src={item.src}
               alt={`Tatuaż ${item.cat} — Urszula Wolak`}
               fill
-              sizes="(max-width: 768px) 50vw, 33vw"
-              className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.05]"
+              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
             />
 
-            {/* Overlay */}
-            <div className="absolute inset-0 bg-[#0a0a08]/0 group-hover:bg-[#0a0a08]/30 transition-all duration-300 flex items-center justify-center">
-              {/* Lupa */}
-              <svg
-                className="w-7 h-7 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="rgba(240,236,227,0.85)"
-                strokeWidth="1.2"
-              >
-                <circle cx="11" cy="11" r="7" />
-                <path d="m16 16 4 4" />
-                <path d="M11 8v6M8 11h6" />
-              </svg>
-            </div>
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/60 opacity-0 group-hover:opacity-100 transition-opacity" />
 
-            {/* Kategoria + numer */}
-            <div className="absolute bottom-0 left-0 right-0 px-3 pb-3 flex items-end justify-between opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-300">
-              <span className="text-xs tracking-widest uppercase text-[#f0ece3]/65">
+            <div className="absolute bottom-3 left-3 right-3 flex justify-between opacity-0 group-hover:opacity-100 transition-all">
+              <span className="text-xs uppercase tracking-widest text-white/70">
                 {item.cat}
               </span>
-              <span
-                className="text-xl font-light text-[#f0ece3]/25"
-                style={{ fontFamily: "'Cormorant Garamond', serif" }}
-              >
+              <span className="text-lg font-light text-white/30">
                 {String(i + 1).padStart(2, "0")}
               </span>
             </div>
@@ -189,74 +168,66 @@ export default function Gallery() {
         ))}
       </div>
 
-      {/* ── Load more ── */}
       {hasMore && (
         <button
           onClick={() => setVisible((v) => v + PAGE_SIZE)}
-          className="w-full mt-3 border border-[#c9a96e]/12 hover:border-[#c9a96e]/35 bg-transparent text-xs tracking-widest uppercase text-[#f0ece3]/50 hover:text-[#f0ece3]/60 py-5 transition-all duration-200 cursor-pointer"
+          className="w-full mt-8 border border-[#c9a96e]/20 hover:border-[#c9a96e]/40 py-4 text-xs tracking-widest uppercase text-[#f0ece3]/60 hover:text-[#f0ece3]"
         >
-          · · · Zobacz więcej
+          Zobacz więcej prac
         </button>
       )}
 
-      {/* ── Instagram ── */}
+      {/* Instagram */}
       <div className="mt-10 flex items-center justify-center gap-4">
-        <span className="block w-8 h-px bg-[#c9a96e]/35" />
+        <span className="block w-8 h-px bg-[#c9a96e]/30" />
         <a
           href="https://www.instagram.com/wolakurszula/"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-xs tracking-widest uppercase text-[#c9a96e]/50 hover:text-[#c9a96e] no-underline transition-colors duration-200"
+          className="text-xs tracking-widest uppercase text-[#c9a96e]/60 hover:text-[#c9a96e]"
         >
-          Więcej na Instagramie
+          Więcej na Instagramie →
         </a>
-        <span className="block w-8 h-px bg-[#c9a96e]/35" />
+        <span className="block w-8 h-px bg-[#c9a96e]/30" />
       </div>
 
-      {/* ── Lightbox ── */}
-      {lightbox !== null && (
+      {/* LIGHTBOX */}
+      {lightboxIndex !== null && (
         <div
-          className="fixed inset-0 z-50 bg-[#0a0a08]/96 flex items-center justify-center"
+          className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center"
           onClick={closeLightbox}
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
         >
-          {/* Zamknij */}
           <button
             onClick={closeLightbox}
-            className="absolute top-5 right-6 text-2xl text-[#f0ece3]/40 hover:text-[#f0ece3] bg-transparent border-none cursor-pointer transition-colors duration-200 z-10"
-            aria-label="Zamknij"
+            className="absolute top-6 right-6 text-4xl text-white/60 hover:text-white z-10"
           >
             ✕
           </button>
 
-          {/* Poprzedni */}
+          {/* Poprzednie */}
           <button
             onClick={(e) => {
               e.stopPropagation();
               prev();
             }}
-            className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 p-3 bg-transparent border-none cursor-pointer group z-10"
-            aria-label="Poprzednie"
+            className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-10 p-4"
           >
-            <svg
-              className="w-6 h-6 stroke-[#f0ece3]/30 group-hover:stroke-[#f0ece3]/80 transition-all duration-200"
-              viewBox="0 0 24 24"
-              fill="none"
-              strokeWidth="1.2"
-            >
-              <path d="M15 18l-6-6 6-6" />
-            </svg>
+            <ChevronLeft
+              size={36}
+              className="text-white/60 hover:text-white transition-colors"
+            />
           </button>
 
-          {/* Zdjęcie */}
+          {/* Zdjęcie z paddingiem na dole */}
           <div
-            className="relative max-w-[90vw] max-h-[85vh] w-full h-full"
+            className="relative max-w-[92vw] max-h-[85vh] w-full h-full pb-20"
             onClick={(e) => e.stopPropagation()}
           >
             <Image
-              src={filtered[lightbox].src}
-              alt={`Tatuaż ${filtered[lightbox].cat} — Urszula Wolak`}
+              src={filtered[lightboxIndex].src}
+              alt="Tatuaż Urszula Wolak"
               fill
               sizes="90vw"
               className="object-contain"
@@ -264,32 +235,27 @@ export default function Gallery() {
             />
           </div>
 
-          {/* Następny */}
+          {/* Następne */}
           <button
             onClick={(e) => {
               e.stopPropagation();
               next();
             }}
-            className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 p-3 bg-transparent border-none cursor-pointer group z-10"
-            aria-label="Następne"
+            className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-10 p-4"
           >
-            <svg
-              className="w-6 h-6 stroke-[#f0ece3]/30 group-hover:stroke-[#f0ece3]/80 transition-all duration-200"
-              viewBox="0 0 24 24"
-              fill="none"
-              strokeWidth="1.2"
-            >
-              <path d="M9 18l6-6-6-6" />
-            </svg>
+            <ChevronRight
+              size={36}
+              className="text-white/60 hover:text-white transition-colors"
+            />
           </button>
 
-          {/* Kategoria + licznik */}
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-            <span className="text-xs tracking-widest uppercase text-[#c9a96e]/50">
-              {filtered[lightbox].cat}
+          {/* Podpis na dole - teraz z tłem i lepszym odstępem */}
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 bg-black/70 backdrop-blur-md px-6 py-3 rounded-2xl text-center border border-white/10">
+            <span className="uppercase tracking-widest text-[#c9a96e] text-sm block">
+              {filtered[lightboxIndex].cat}
             </span>
-            <span className="text-xs tracking-widest text-[#f0ece3]/25">
-              {String(lightbox + 1).padStart(2, "0")} /{" "}
+            <span className="block text-xs text-white/50 mt-1">
+              {String(lightboxIndex + 1).padStart(2, "0")} /{" "}
               {String(filtered.length).padStart(2, "0")}
             </span>
           </div>

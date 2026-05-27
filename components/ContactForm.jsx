@@ -16,7 +16,8 @@ export default function ContactForm() {
   const [isCover, setIsCover] = useState(null);
   const [size, setSize] = useState("");
   const [submitted, setSubmitted] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState(""); // błąd ogólny
+  const [fieldErrors, setFieldErrors] = useState({}); // błędy per pole
   const [isPending, startTransition] = useTransition();
 
   const inspirationRef = useRef(null);
@@ -26,13 +27,55 @@ export default function ContactForm() {
 
   const handleFiles = (e, setter) => setter(Array.from(e.target.files));
 
+  // Prosta walidacja
+  const validateForm = (formData) => {
+    const errors = {};
+
+    if (!formData.get("name")?.trim()) errors.name = "Imię jest wymagane";
+    if (!formData.get("contact")?.trim())
+      errors.contact = "Kontakt jest wymagany";
+    if (!formData.get("bodyPart")?.trim())
+      errors.bodyPart = "Miejsce na ciele jest wymagane";
+
+    const isCoverValue = formData.get("isCover");
+    if (isCoverValue === "null" || isCoverValue === null) {
+      errors.isCover = "Wybierz czy to cover";
+    }
+
+    // Prosta walidacja email/telefon
+    const contact = formData.get("contact")?.trim();
+    if (
+      contact &&
+      !/^\+?\d{7,15}$/.test(contact.replace(/\s/g, "")) &&
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact)
+    ) {
+      errors.contact = "Podaj poprawny numer telefonu lub adres email";
+    }
+
+    return errors;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setError("");
+    setFieldErrors({});
 
+    const formData = new FormData(e.target);
+    formData.set("size", size);
+    formData.set("isCover", String(isCover));
+
+    // Walidacja klienta
+    const validationErrors = validateForm(formData);
+    if (Object.keys(validationErrors).length > 0) {
+      setFieldErrors(validationErrors);
+      return;
+    }
+
+    // Walidacja plików
     const allFiles = [...inspirationFiles, ...coverFiles];
     const totalMB =
       allFiles.reduce((sum, f) => sum + f.size, 0) / (1024 * 1024);
+
     if (totalMB > MAX_TOTAL_MB) {
       setError(
         `Załączniki są za duże (${totalMB.toFixed(1)} MB). Maksymalnie ${MAX_TOTAL_MB} MB łącznie.`,
@@ -40,18 +83,25 @@ export default function ContactForm() {
       return;
     }
 
-    const formData = new FormData(e.target);
-    formData.set("size", size);
-    formData.set("isCover", String(isCover));
-
     startTransition(async () => {
       const result = await sendContactEmail(formData);
+
       if (result.success) {
         setSubmitted(true);
+        setError("");
+        setFieldErrors({});
       } else {
-        setError(result.error || "Coś poszło nie tak.");
+        setError(
+          result.error || "Coś poszło nie tak. Spróbuj ponownie później.",
+        );
       }
     });
+  };
+
+  const clearFieldError = (field) => {
+    if (fieldErrors[field]) {
+      setFieldErrors((prev) => ({ ...prev, [field]: "" }));
+    }
   };
 
   if (submitted) {
@@ -63,10 +113,10 @@ export default function ContactForm() {
           style={{ fontFamily: "'Cormorant Garamond', serif" }}
         >
           Dzięki,
-          <em className="block italic text-[#f0ece3]/40">odezwę się wkrótce</em>
+          <em className="block italic text-[#f0ece3]/50">odezwę się wkrótce</em>
         </h2>
-        <p className="text-sm font-light leading-relaxed text-[#f0ece3]/80 max-w-sm">
-          Odpowiadam w ciągu 48 godzin. Do zobaczenia!
+        <p className="text-base font-light leading-relaxed text-[#f0ece3]/75 max-w-sm">
+          Odpowiadam zazwyczaj w ciągu 48 godzin.
         </p>
       </div>
     );
@@ -74,34 +124,41 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col">
-      {/* Divider mobile */}
       <div className="flex items-center gap-4 mb-8 lg:hidden">
         <div className="flex-1 h-px bg-[#c9a96e]/10" />
-        <span className="text-[0.65rem] tracking-[0.22em] uppercase text-[#c9a96e]/80">
-          formularz
+        <span className="text-xs tracking-widest uppercase text-[#c9a96e]">
+          Formularz
         </span>
         <div className="flex-1 h-px bg-[#c9a96e]/10" />
       </div>
 
-      <Field label="Imię" required>
-        <input name="name" required placeholder="Twoje imię" className={inp} />
+      <Field label="Imię" required error={fieldErrors.name}>
+        <input
+          name="name"
+          required
+          placeholder="Twoje imię"
+          className={`${inp} ${fieldErrors.name ? "border-red-500" : ""}`}
+          onChange={() => clearFieldError("name")}
+        />
       </Field>
 
-      <Field label="Telefon / e-mail" required>
+      <Field label="Telefon / e-mail" required error={fieldErrors.contact}>
         <input
           name="contact"
           required
           placeholder="Jak się z Tobą skontaktować?"
-          className={inp}
+          className={`${inp} ${fieldErrors.contact ? "border-red-500" : ""}`}
+          onChange={() => clearFieldError("contact")}
         />
       </Field>
 
-      <Field label="Miejsce na ciele" required>
+      <Field label="Miejsce na ciele" required error={fieldErrors.bodyPart}>
         <input
           name="bodyPart"
           required
           placeholder="np. przedramię, łopatka, udo, żebra..."
-          className={inp}
+          className={`${inp} ${fieldErrors.bodyPart ? "border-red-500" : ""}`}
+          onChange={() => clearFieldError("bodyPart")}
         />
       </Field>
 
@@ -120,7 +177,7 @@ export default function ContactForm() {
         </div>
       </Field>
 
-      <Field label="Czy to cover?" required>
+      <Field label="Czy to cover?" required error={fieldErrors.isCover}>
         <div className="flex gap-2 pt-1">
           <button
             type="button"
@@ -137,6 +194,9 @@ export default function ContactForm() {
             Tak — to cover
           </button>
         </div>
+        {fieldErrors.isCover && (
+          <p className="text-red-400 text-sm mt-2">{fieldErrors.isCover}</p>
+        )}
       </Field>
 
       {isCover && (
@@ -145,7 +205,7 @@ export default function ContactForm() {
             files={coverFiles}
             onClick={() => coverRef.current?.click()}
             hint="Dodaj zdjęcie tatuażu do zakrycia"
-            sub="JPG, PNG, WEBP · maks. 10 MB"
+            sub="JPG, PNG, WEBP · max 10 MB"
           />
           <input
             ref={coverRef}
@@ -163,7 +223,7 @@ export default function ContactForm() {
           files={inspirationFiles}
           onClick={() => inspirationRef.current?.click()}
           hint="Załącz zdjęcia inspiracji"
-          sub="Możesz dodać kilka plików · JPG, PNG, WEBP"
+          sub="Możesz dodać kilka plików"
         />
         <input
           ref={inspirationRef}
@@ -181,7 +241,7 @@ export default function ContactForm() {
           name="description"
           rows={5}
           placeholder="Opisz swój pomysł — temat, nastrój, ważne detale..."
-          className={`${inp} resize-none leading-relaxed`}
+          className={`${inp} resize-none`}
         />
       </Field>
 
@@ -193,8 +253,9 @@ export default function ContactForm() {
         />
       </Field>
 
+      {/* Błędy ogólne */}
       {error && (
-        <p className="mt-5 text-sm text-red-400 border border-red-400/20 px-4 py-3">
+        <p className="mt-6 text-sm text-red-400 border border-red-400/20 px-5 py-4 rounded-xl">
           {error}
         </p>
       )}
@@ -202,20 +263,13 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={isPending}
-        className={[
-          "mt-10 w-full text-xs sm:text-sm font-medium tracking-[0.22em] uppercase",
-          "text-[#0a0a08] bg-[#c9a96e] hover:bg-[#d4b580] py-4 sm:py-5",
-          "transition-colors duration-200",
-          isPending ? "opacity-60 cursor-not-allowed" : "cursor-pointer",
-        ].join(" ")}
+        className="mt-10 w-full py-5 text-sm font-medium tracking-widest uppercase bg-[#c9a96e] hover:bg-[#d4b580] text-[#0a0a08] transition-colors disabled:opacity-60"
       >
         {isPending ? "Wysyłanie..." : "Wyślij zapytanie"}
       </button>
 
-      <p className="mt-5 text-center text-xs leading-relaxed text-[#f0ece3]/30">
-        Odpowiadam w ciągu 48 godzin.
-        <br />
-        Wycenę i szczegóły omówimy po pierwszym kontakcie.
+      <p className="mt-6 text-center text-xs text-[#f0ece3]/65">
+        Odpowiadam w ciągu 48 godzin. Wycenę przygotuję po kontakcie.
       </p>
     </form>
   );
@@ -224,32 +278,32 @@ export default function ContactForm() {
 // ── Helpers ───────────────────────────────────────────
 
 const inp = [
-  "w-full bg-transparent border-none outline-none",
-  "text-base sm:text-lg font-light text-[#f0ece3]",
-  "placeholder:text-[#f0ece3]/40 pt-1 pb-1",
+  "w-full bg-transparent border-b border-[#c9a96e]/30 focus:border-[#c9a96e]",
+  "text-base sm:text-lg font-light text-[#f0ece3] placeholder:text-[#f0ece3]/50",
+  "py-3 transition-colors duration-200",
 ].join(" ");
 
 const pill = (active) =>
   [
-    "text-[0.7rem] sm:text-xs tracking-[0.18em] uppercase px-4 py-2.5 border cursor-pointer transition-all duration-200",
+    "text-sm tracking-widest px-5 py-3 border rounded-full cursor-pointer transition-all",
     active
-      ? "bg-[#c9a96e] text-[#0a0a08] border-[#c9a96e] font-medium"
-      : "bg-transparent text-[#f0ece3]/55 border-[#c9a96e]/20 hover:text-[#f0ece3]/80 hover:border-[#c9a96e]/40",
+      ? "bg-[#c9a96e] text-[#0a0a08] border-[#c9a96e]"
+      : "border-[#c9a96e]/30 text-[#f0ece3]/80 hover:border-[#c9a96e]/60 hover:text-[#f0ece3]",
   ].join(" ");
 
-function Field({ label, required, last, children }) {
+function Field({ label, required, last, error, children }) {
   return (
     <div
-      className={[
-        "flex flex-col gap-3 py-6 border-t border-[#c9a96e]/12",
-        last ? "border-b border-b-[#c9a96e]/12" : "",
-      ].join(" ")}
+      className={`flex flex-col gap-3 py-8 border-t border-[#c9a96e]/10 ${
+        last ? "border-b" : ""
+      }`}
     >
-      <label className="text-[0.65rem] tracking-[0.22em] uppercase text-[#c9a96e]/85 font-medium">
+      <label className="text-xs tracking-[0.25em] uppercase text-[#c9a96e] font-medium">
         {label}
-        {required && <span className="ml-1 text-[#c9a96e]/50">*</span>}
+        {required && <span className="ml-1 text-[#c9a96e]/60">*</span>}
       </label>
       {children}
+      {error && <p className="text-red-400 text-sm mt-1.5">{error}</p>}
     </div>
   );
 }
@@ -258,28 +312,28 @@ function Upload({ files, onClick, hint, sub }) {
   return (
     <div
       onClick={onClick}
-      className="mt-2 border border-dashed border-[#c9a96e]/20 hover:border-[#c9a96e]/50 px-6 py-7 flex flex-col items-center gap-3 cursor-pointer transition-colors duration-200"
+      className="mt-2 border border-dashed border-[#c9a96e]/30 hover:border-[#c9a96e]/60 px-6 py-8 flex flex-col items-center gap-3 cursor-pointer transition-colors rounded-xl"
     >
       {files.length > 0 ? (
-        <p className="text-sm text-[#c9a96e]/70 text-center leading-relaxed break-all">
+        <p className="text-sm text-[#c9a96e]/80 text-center break-all">
           {files.map((f) => f.name).join(", ")}
         </p>
       ) : (
         <>
           <svg
-            className="w-6 h-6"
+            className="w-7 h-7"
             viewBox="0 0 20 20"
             fill="none"
-            stroke="rgba(201,169,110,0.4)"
-            strokeWidth="1.2"
+            stroke="rgba(201,169,110,0.5)"
+            strokeWidth="1.4"
           >
             <path d="M10 3v10M5 8l5-5 5 5" />
             <path d="M3 15h14" />
           </svg>
-          <span className="text-[0.7rem] tracking-[0.2em] uppercase text-[#f0ece3]/55">
+          <span className="text-sm tracking-widest uppercase text-[#f0ece3]/70">
             {hint}
           </span>
-          <span className="text-xs text-[#f0ece3]/35">{sub}</span>
+          <span className="text-xs text-[#f0ece3]/40">{sub}</span>
         </>
       )}
     </div>

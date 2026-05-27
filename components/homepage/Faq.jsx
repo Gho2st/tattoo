@@ -30,7 +30,7 @@ export default function Specializations() {
 
   return (
     <section
-      className="bg-primary px-5 py-16 sm:px-8 sm:py-20 lg:px-20 lg:py-28 2xl:px-[12%]"
+      className="bg-primary px-5 py-16 sm:px-8 sm:py-20 lg:py-28 2xl:px-[12%]"
       id="faq"
     >
       {/* Eyebrow */}
@@ -39,7 +39,7 @@ export default function Specializations() {
         FAQ
       </span>
 
-      {/* Heading */}
+      {/* Główny nagłówek sekcji - zostaje h2 */}
       <h2
         className="text-[2.2rem] sm:text-[2.8rem] lg:text-[3.5rem] font-light leading-[1.04] text-[#f0ece3] m-0 mb-10 sm:mb-12"
         style={{ fontFamily: "'Cormorant Garamond', serif" }}
@@ -62,14 +62,15 @@ export default function Specializations() {
               aria-expanded={open === i}
               className="w-full flex items-center justify-between gap-3 py-5 sm:py-6 bg-transparent border-none cursor-pointer text-left group"
             >
-              {/* Numer + pytanie */}
-              <div className="flex items-center gap-3.5 sm:gap-4">
+              {/* Numer + pytanie jako h3 */}
+              <div className="flex items-center gap-3.5 sm:gap-4 flex-1">
                 <span className="text-[0.46rem] tracking-[0.22em] text-[#c9a96e]/45 tabular-nums flex-shrink-0">
                   {num}
                 </span>
-                <span
+
+                <h3
                   className={[
-                    "text-[1.15rem] sm:text-[1.35rem] lg:text-[1.5rem] font-light leading-snug transition-colors duration-200",
+                    "text-[1.15rem] sm:text-[1.35rem] lg:text-[1.5rem] font-light leading-snug transition-colors duration-200 m-0",
                     open === i
                       ? "text-[#f0ece3]"
                       : "text-[#f0ece3]/85 group-hover:text-[#f0ece3]",
@@ -77,7 +78,7 @@ export default function Specializations() {
                   style={{ fontFamily: "'Cormorant Garamond', serif" }}
                 >
                   {question}
-                </span>
+                </h3>
               </div>
 
               {/* +/- ikona */}
@@ -105,6 +106,20 @@ export default function Specializations() {
             </div>
           </div>
         ))}
+      </div>
+
+      {/* Link do pełnego FAQ */}
+      <div className="mt-12 flex items-center justify-center gap-4">
+        <span className="block w-8 h-px bg-[#c9a96e]/30" />
+        <a
+          href="https://kulttattoo.pl/faq/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-sm tracking-widest uppercase text-[#c9a96e] hover:text-[#d4b580] transition-colors duration-200 flex items-center gap-2"
+        >
+          Tutaj znajdziesz więcej odpowiedzi na nurtujące pytania →
+        </a>
+        <span className="block w-8 h-px bg-[#c9a96e]/30" />
       </div>
     </section>
   );
