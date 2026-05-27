@@ -11,9 +11,9 @@ const INFO = [
 ];
 
 export const metadata = {
-  title: "Umów sesję — Kontakt",
+  title: "Umów Sesję Tatuażu | Urszula Wolak • Kraków",
   description:
-    "Umów konsultację z Urszulą Wolak — tatuażystką w Kult Tattoo Studio w Krakowie.",
+    "Umów bezpłatną konsultację z Urszulą Wolak — doświadczoną tatuażystką z Krakowa. Realizm, mikrorealizm, kolor i covery. Szybka odpowiedź w ciągu 48h.",
   alternates: {
     canonical: "https://wolaktattoo.pl/kontakt",
   },
@@ -124,9 +124,9 @@ export default function KontaktPage() {
                     <span className="inline-block px-3.5 py-1 bg-[#c9a96e]/10 text-[#c9a96e] text-xs tracking-widest uppercase rounded-full mb-3">
                       BEZPŁATNIE
                     </span>
-                    <h3 className="text-2xl font-light text-[#f0ece3] mb-3">
+                    <h2 className="text-2xl font-light text-[#f0ece3] mb-3">
                       Bezpłatna konsultacja
-                    </h3>
+                    </h2>
                     <p className="text-[#f0ece3]/80 text-[15.5px] leading-relaxed">
                       Każda konsultacja jest całkowicie darmowa. Omówimy pomysł,
                       styl, rozmiar tatuażu oraz przygotuję wstępną wycenę.
