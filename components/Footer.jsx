@@ -11,7 +11,7 @@ const NAV_LINKS = [
 
 const CONTACT = [
   { label: "wolaktattoo@gmail.com", href: "mailto:wolaktattoo@gmail.com" },
-  { label: "+48 000 000 000", href: "tel:+48000000000" },
+  { label: "+48 788 557 523", href: "tel:+48788557523" },
 ];
 
 export default function Footer() {

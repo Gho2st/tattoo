@@ -7,7 +7,7 @@ const INFO = [
     value: "wolaktattoo@gmail.com",
     href: "mailto:wolaktattoo@gmail.com",
   },
-  { label: "Telefon", value: "+48 000 000 000", href: "tel:+48000000000" },
+  { label: "Telefon", value: "+48 788 557 523", href: "tel:+48788557523" },
 ];
 
 export const metadata = {
