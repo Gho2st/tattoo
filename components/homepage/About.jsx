@@ -31,14 +31,19 @@ export default function About() {
             </div>
 
             {/* Badge */}
-            <div className="absolute bottom-6 right-6 bg-[#0a0a08]/95 border border-[#c9a96e]/30 rounded-2xl px-6 py-4">
+            <a
+              href="https://kulttattoo.pl"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="absolute bottom-6 right-6 bg-[#0a0a08]/95 border border-[#c9a96e]/30 hover:border-[#c9a96e]/60 rounded-2xl px-6 py-4 no-underline transition-colors group"
+            >
               <span className="block text-xs tracking-widest uppercase text-[#c9a96e]">
                 Kult Tattoo
               </span>
-              <span className="block text-2xl font-light text-[#f0ece3]">
+              <span className="block text-2xl font-light text-[#f0ece3] group-hover:text-[#c9a96e] transition-colors">
                 Kraków
               </span>
-            </div>
+            </a>
           </div>
 
           {/* Tekst + info */}
@@ -59,10 +64,18 @@ export default function About() {
             </h2>
 
             <p className="text-sm sm:text-base font-light leading-[1.85] text-secondary mb-6">
-              Jestem tatuażystką w Kult Tattoo w Krakowie. Studiowałam
-              projektowanie wnętrz i przestrzeni — to wykształcenie daje mi
-              solidne podstawy w kompozycji, proporcjach i harmonii, które
-              przenoszę bezpośrednio na skórę.
+              Jestem tatuażystką w{" "}
+              <a
+                href="https://kulttattoo.pl"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#c9a96e] hover:text-white underline underline-offset-2 decoration-[#c9a96e]/40 hover:decoration-white transition-colors"
+              >
+                Kult Tattoo
+              </a>{" "}
+              w Krakowie. Studiowałam projektowanie wnętrz i przestrzeni — to
+              wykształcenie daje mi solidne podstawy w kompozycji, proporcjach i
+              harmonii, które przenoszę bezpośrednio na skórę.
             </p>
 
             <p className="text-sm sm:text-base font-light leading-[1.85] text-secondary mb-8">

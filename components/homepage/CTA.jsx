@@ -20,8 +20,8 @@ export default function CTA() {
             <em className="block italic text-[#f0ece3]/40"> w Krakowie</em>
           </h2>
 
-          <p className="text-sm font-light leading-relaxed text-secondary max-w-md mb-8">
-            Napisz do mnie — opowiedz o swoim pomyśle, miejscu na ciele i
+          <p className="text-sm 2xl:text-base font-light leading-relaxed text-secondary max-w-md mb-8">
+            Napisz — opowiedz o swoim pomyśle, miejscu na ciele i
             inspiracjach. Odpowiem w ciągu 48 godzin.
           </p>
 
@@ -51,7 +51,7 @@ export default function CTA() {
               href="https://www.instagram.com/wolakurszula/"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-3 text-xs tracking-widest uppercase text-[#f0ece3]/40 hover:text-[#f0ece3]/70 no-underline transition-colors duration-200 group w-full sm:w-auto justify-center sm:justify-start py-4 sm:py-0"
+              className="flex items-center gap-3 text-xs tracking-widest uppercase text-[#f0ece3]/70 hover:text-[#f0ece3]/70 no-underline transition-colors duration-200 group w-full sm:w-auto justify-center sm:justify-start py-4 sm:py-0"
             >
               <span className="block w-5 h-px bg-current transition-all duration-300 group-hover:w-8" />
               Napisz na Instagram
