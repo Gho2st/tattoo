@@ -148,7 +148,8 @@ export default function Hero() {
         </p>
 
         {/* Dots + CTA */}
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+          {/* Kropki */}
           <div className="flex gap-2">
             {SLIDES.map((_, i) => (
               <button
@@ -164,16 +165,17 @@ export default function Hero() {
             ))}
           </div>
 
-          <div className="flex items-center gap-3">
+          {/* Przyciski */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
             <Link
               href="/#portfolio"
-              className="px-6 py-3.5 text-sm tracking-widest border border-[#f0ece3]/30 hover:border-[#f0ece3]/50 text-[#f0ece3]/80 hover:text-white transition-all"
+              className="text-center px-6 py-3.5 text-sm tracking-widest border border-[#f0ece3]/30 hover:border-[#f0ece3]/50 text-[#f0ece3]/80 hover:text-white transition-all"
             >
               Zobacz portfolio
             </Link>
             <Link
               href="/kontakt"
-              className="px-7 py-3.5 text-sm tracking-widest font-medium bg-[#c9a96e] hover:bg-[#d4b580] text-[#0a0a08] transition-all"
+              className="text-center px-7 py-3.5 text-sm tracking-widest font-medium bg-[#c9a96e] hover:bg-[#d4b580] text-[#0a0a08] transition-all"
             >
               Umów sesję
             </Link>
