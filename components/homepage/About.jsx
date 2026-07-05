@@ -66,7 +66,7 @@ export default function About() {
             <p className="text-sm sm:text-base font-light leading-[1.85] text-secondary mb-6">
               Jestem tatuażystką w{" "}
               <a
-                href="https://kulttattoo.pl"
+                href="https://kulttattoo.pl/artysci/urszulawolak/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[#c9a96e] hover:text-white underline underline-offset-2 decoration-[#c9a96e]/40 hover:decoration-white transition-colors"
