@@ -2,10 +2,10 @@
 
 @layer utilities {
   .bg-primary {
-    @apply bg-[#0C0A09];
+    @apply bg-[#0C0A09]/70;
   }
   .bg-secondary {
-    @apply bg-[#1C1917];
+    @apply bg-[#1C1917]/70;
   }
   .text-primary {
     @apply text-[#FFFFFF];
@@ -17,4 +17,15 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+body {
+  background-color: #0a0a08;
+  background-image: radial-gradient(
+    ellipse 90% 55% at 50% 0%,
+    #14120e 0%,
+    #0a0a08 55%
+  );
+  background-attachment: fixed;
+  background-repeat: no-repeat;
 }

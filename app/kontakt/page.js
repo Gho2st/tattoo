@@ -192,6 +192,20 @@ export default function KontaktPage() {
             <ContactForm />
           </div>
         </div>
+
+        {/* Mapa dojazdu */}
+        <div className="border border-[#c9a96e]/15 rounded-2xl overflow-hidden mt-10">
+          <iframe
+            title="Kult Tattoo Kraków — lokalizacja studia"
+            src="https://www.google.com/maps?q=Kult+Tattoo+Krak%C3%B3w&output=embed"
+            width="100%"
+            height="280"
+            style={{ border: 0, filter: "grayscale(0.4) contrast(1.05)" }}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            allowFullScreen
+          />
+        </div>
       </div>
     </main>
   );
