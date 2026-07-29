@@ -14,7 +14,7 @@ const INFO = [
   {
     label: "Telefon do studia Kult Tattoo",
     value: "+48 502 045 009",
-    href: "tel:++48502045009",
+    href: "tel:+48502045009",
   },
 ];
 
