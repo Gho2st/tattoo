@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 export const metadata = {
+  metadataBase: new URL("https://wolaktattoo.pl"),
   openGraph: {
     type: "website",
     url: "https://urszulawolak.pl/",
