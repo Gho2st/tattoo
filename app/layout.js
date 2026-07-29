@@ -24,7 +24,7 @@ export default function RootLayout({ children }) {
         {/* Globalne ziarno / tekstura */}
         <div
           aria-hidden="true"
-          className="fixed inset-0 pointer-events-none z-[1] opacity-[0.04] mix-blend-soft-light"
+          className="fixed inset-0 pointer-events-none z-1 opacity-[0.04] mix-blend-soft-light"
         />
 
         <Navbar />

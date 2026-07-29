@@ -70,7 +70,7 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#0a0a08] border-t border-[#c9a96e]/10">
+    <footer className=" border-t border-[#c9a96e]/10">
       {/* ── Top grid ── */}
       <div className="px-5 pt-12 pb-10 sm:px-8 lg:px-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr] gap-10 lg:gap-16 border-b border-[#c9a96e]/8">
         {/* Brand */}

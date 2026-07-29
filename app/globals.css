@@ -20,12 +20,7 @@ html {
 }
 
 body {
-  background-color: #0a0a08;
-  background-image: radial-gradient(
-    ellipse 90% 55% at 50% 0%,
-    #14120e 0%,
-    #0a0a08 55%
-  );
+  background-color: #14100c;
   background-attachment: fixed;
   background-repeat: no-repeat;
 }

@@ -12,7 +12,7 @@ export default function About() {
   return (
     <section
       id="o-mnie"
-      className="bg-primary px-5 py-16 sm:px-8 sm:py-20 lg:px-20 lg:py-28 2xl:px-[12%]"
+      className=" px-5 py-16 sm:px-8 sm:py-20 lg:px-20 lg:py-28 2xl:px-[12%]"
     >
       <div className="max-w-7xl mx-auto">
         {/* Główna zawartość */}

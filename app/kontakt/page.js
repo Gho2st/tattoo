@@ -29,7 +29,7 @@ export const metadata = {
 
 export default function KontaktPage() {
   return (
-    <main className="min-h-screen bg-primary px-5 pt-28 pb-20 sm:px-8 sm:pt-32 lg:px-20 lg:pt-36 lg:pb-28">
+    <main className="min-h-screen px-5 pt-28 pb-20 sm:px-8 sm:pt-32 lg:px-20 lg:pt-36 lg:pb-28">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="max-w-2xl mb-16">

@@ -101,7 +101,7 @@ export default function Gallery() {
   return (
     <section
       id="portfolio"
-      className="bg-primary py-12 sm:py-16 lg:py-20 px-5 lg:px-20 2xl:px-[12%]"
+      className=" py-12 sm:py-16 lg:py-20 px-5 lg:px-20 2xl:px-[12%]"
     >
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-8">

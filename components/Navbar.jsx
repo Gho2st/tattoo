@@ -44,7 +44,7 @@ export default function Navbar() {
           "px-5 sm:px-8 lg:px-12",
           "transition-all duration-300",
           scrolled
-            ? "h-14 sm:h-16 bg-[#0a0a08]/96 backdrop-blur-md border-b border-[#c9a96e]/15"
+            ? "h-14 sm:h-16 backdrop-blur-md border-b border-[#c9a96e]/15"
             : "h-16 sm:h-20 bg-transparent",
         ].join(" ")}
       >
