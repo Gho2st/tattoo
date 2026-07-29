@@ -137,7 +137,7 @@ export default function Hero() {
 
       {/* Treść */}
       <div className="relative z-10 mt-auto flex flex-col px-5 pb-10 sm:px-8 sm:pb-12 lg:px-20 lg:pb-20 2xl:pb-32">
-        <span className="flex items-center gap-3 text-[0.7rem] tracking-[0.4em] uppercase text-[#c9a96e] mb-4">
+        <span className="hidden md:flex  items-center gap-3 text-[0.7rem] tracking-[0.4em] uppercase text-[#c9a96e] mb-4">
           <span className="block w-6 h-px bg-[#9C4A2F]" />
           Profesjonalne tatuaże w Krakowie
         </span>
