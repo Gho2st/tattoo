@@ -15,6 +15,14 @@ const SLIDES = [
 const INTERVAL_MS = 5000;
 const SWIPE_THRESHOLD = 50;
 
+// Trzy warstwy w jednym elemencie — kolejność ma znaczenie,
+// pierwszy gradient maluje się na wierzchu
+const OVERLAY = [
+  "radial-gradient(90% 70% at 10% 100%, rgba(201,169,110,0.16), transparent 60%)",
+  "radial-gradient(70% 60% at 95% 20%, rgba(156,74,47,0.14), transparent 65%)",
+  "linear-gradient(to top, #14100C 0%, rgba(20,16,12,0.55) 40%, transparent 75%)",
+].join(", ");
+
 export default function Hero() {
   const [current, setCurrent] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
@@ -38,7 +46,6 @@ export default function Hero() {
     };
   }, [startTimer]);
 
-  // Pauza przy najechaniu myszką (lepsze UX)
   const pauseTimer = () => setIsPaused(true);
   const resumeTimer = () => setIsPaused(false);
 
@@ -74,13 +81,13 @@ export default function Hero() {
 
   return (
     <section
-      className="relative w-full min-h-svh bg-[#0a0a08] flex flex-col overflow-hidden"
+      className="relative w-full min-h-svh bg-[#14100C] flex flex-col overflow-hidden"
       onMouseEnter={pauseTimer}
       onMouseLeave={resumeTimer}
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
     >
-      {/* Slides */}
+      {/* Slides — pełna saturacja, przyciemnia dopiero gradient */}
       {SLIDES.map((src, i) => (
         <Image
           key={src}
@@ -91,20 +98,23 @@ export default function Hero() {
           loading={i === 0 ? "eager" : "lazy"}
           sizes="100vw"
           className={`object-cover object-center transition-opacity duration-1000 ease-out ${
-            i === current ? "opacity-80" : "opacity-0"
+            i === current ? "opacity-100" : "opacity-0"
           }`}
           quality={92}
         />
       ))}
 
-      {/* Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a08] via-[#0a0a08]/60 to-transparent" />
+      {/* Duotone: ciepłe światło pod tekstem, rdzawy kontrapunkt z prawej */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{ backgroundImage: OVERLAY }}
+      />
 
       {/* Strzałki */}
       <button
         onClick={prev}
         aria-label="Poprzedni slajd"
-        className="hidden lg:flex absolute left-6 top-1/2 -translate-y-1/2 z-20 items-center justify-center w-12 h-12 border border-[#f0ece3]/20 hover:border-[#c9a96e] text-[#f0ece3]/40 hover:text-[#c9a96e] rounded-full transition-all duration-300 group"
+        className="hidden lg:flex absolute left-6 top-1/2 -translate-y-1/2 z-20 items-center justify-center w-12 h-12 border border-[#c9a96e]/25 hover:border-[#c9a96e] text-[#c9a96e]/50 hover:text-[#c9a96e] rounded-full transition-all duration-300 group"
       >
         <ChevronLeft
           size={20}
@@ -116,7 +126,7 @@ export default function Hero() {
       <button
         onClick={next}
         aria-label="Następny slajd"
-        className="hidden lg:flex absolute right-6 top-1/2 -translate-y-1/2 z-20 items-center justify-center w-12 h-12 border border-[#f0ece3]/20 hover:border-[#c9a96e] text-[#f0ece3]/40 hover:text-[#c9a96e] rounded-full transition-all duration-300 group"
+        className="hidden lg:flex absolute right-6 top-1/2 -translate-y-1/2 z-20 items-center justify-center w-12 h-12 border border-[#c9a96e]/25 hover:border-[#c9a96e] text-[#c9a96e]/50 hover:text-[#c9a96e] rounded-full transition-all duration-300 group"
       >
         <ChevronRight
           size={20}
@@ -127,7 +137,8 @@ export default function Hero() {
 
       {/* Treść */}
       <div className="relative z-10 mt-auto flex flex-col px-5 pb-10 sm:px-8 sm:pb-12 lg:px-20 lg:pb-20 2xl:pb-32">
-        <span className="text-[0.7rem] tracking-[0.4em] uppercase text-[#c9a96e] mb-4">
+        <span className="flex items-center gap-3 text-[0.7rem] tracking-[0.4em] uppercase text-[#c9a96e] mb-4">
+          <span className="block w-6 h-px bg-[#9C4A2F]" />
           Profesjonalne tatuaże w Krakowie
         </span>
 
@@ -156,10 +167,11 @@ export default function Hero() {
                 key={i}
                 onClick={() => goTo(i)}
                 aria-label={`Idź do slajdu ${i + 1}`}
+                aria-current={i === current}
                 className={`h-[3px] rounded-full transition-all duration-500 ${
                   i === current
                     ? "w-10 bg-[#c9a96e]"
-                    : "w-5 bg-[#f0ece3]/30 hover:bg-[#f0ece3]/50"
+                    : "w-5 bg-[#c9a96e]/25 hover:bg-[#c9a96e]/50"
                 }`}
               />
             ))}
@@ -169,13 +181,13 @@ export default function Hero() {
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
             <Link
               href="/#portfolio"
-              className="text-center px-6 py-3.5 text-sm tracking-widest border border-[#f0ece3]/30 hover:border-[#f0ece3]/50 text-[#f0ece3]/80 hover:text-white transition-all"
+              className="text-center px-6 py-3.5 text-sm tracking-widest border border-[#f0ece3]/30 hover:border-[#c9a96e]/60 text-[#f0ece3]/80 hover:text-[#f0ece3] transition-all"
             >
               Zobacz portfolio
             </Link>
             <Link
               href="/kontakt"
-              className="text-center px-7 py-3.5 text-sm tracking-widest font-medium bg-[#c9a96e] hover:bg-[#d4b580] text-[#0a0a08] transition-all"
+              className="text-center px-7 py-3.5 text-sm tracking-widest font-medium bg-[#c9a96e] hover:bg-[#d4b580] text-[#14100C] transition-all"
             >
               Umów sesję
             </Link>
