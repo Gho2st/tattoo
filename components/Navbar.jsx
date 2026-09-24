@@ -177,23 +177,23 @@ export default function Navbar() {
         </nav>
 
         {/* Bottom bar */}
-        <div className="w-full px-8 sm:px-12 mt-8 flex items-center justify-between">
+        <div className="w-full px-8 sm:px-12 mt-8 flex flex-col items-stretch gap-5">
+          <Link
+            href="/kontakt"
+            onClick={close}
+            className="text-center text-xs font-medium tracking-[0.26em] uppercase bg-[#c9a96e] hover:bg-[#d4b580] text-[#000000] px-7 py-4 transition-colors duration-200 no-underline"
+          >
+            Umów sesję
+          </Link>
+
           <a
             href="https://www.instagram.com/wolakurszula/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs tracking-[0.28em] uppercase text-[#a8a29e] hover:text-[#c9a96e] transition-colors duration-200 no-underline"
+            className="text-center text-xs tracking-[0.28em] uppercase text-[#a8a29e] hover:text-[#c9a96e] transition-colors duration-200 no-underline"
           >
             @wolakurszula
           </a>
-
-          <Link
-            href="/kontakt"
-            onClick={close}
-            className="text-xs font-medium tracking-[0.26em] uppercase bg-[#c9a96e] hover:bg-[#d4b580] text-[#000000] px-7 py-3.5 transition-colors duration-200 no-underline"
-          >
-            Umów sesję
-          </Link>
         </div>
       </div>
     </>

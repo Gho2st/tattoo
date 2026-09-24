@@ -166,6 +166,11 @@ const FILTERS = [
 
 const PAGE_SIZE = 8;
 
+// Te same wartości sizes w siatce i podglądzie — dzięki temu przeglądarka
+// ma miniaturę w cache i może ją od razu pokazać jako podkład
+const GRID_SIZES = "(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw";
+const LIGHTBOX_SIZES = "(max-width: 768px) 92vw, 50vw";
+
 export default function Gallery() {
   const [active, setActive] = useState("all");
   const [visible, setVisible] = useState(PAGE_SIZE);
@@ -283,7 +288,7 @@ export default function Gallery() {
               src={item.src}
               alt={`Tatuaż: ${item.title}. Urszula Wolak, Kraków`}
               fill
-              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+              sizes={GRID_SIZES}
               className="object-cover transition-transform duration-500 group-hover:scale-105"
             />
 
@@ -358,14 +363,43 @@ export default function Gallery() {
             className="relative max-w-[92vw] max-h-[85vh] w-full h-full pb-20"
             onClick={(e) => e.stopPropagation()}
           >
+            {/* Podkład: miniatura z siatki, widoczna od razu */}
             <Image
+              key={`thumb-${filtered[lightboxIndex].src}`}
+              src={filtered[lightboxIndex].src}
+              alt=""
+              aria-hidden="true"
+              fill
+              sizes={GRID_SIZES}
+              className="object-contain blur-sm"
+            />
+            <Image
+              key={filtered[lightboxIndex].src}
               src={filtered[lightboxIndex].src}
               alt={`Tatuaż: ${filtered[lightboxIndex].title}. Urszula Wolak, Kraków`}
               fill
-              sizes="90vw"
+              sizes={LIGHTBOX_SIZES}
               className="object-contain"
               priority
             />
+          </div>
+
+          {/* Wczytanie sąsiednich zdjęć w tle, żeby przewijanie było płynne */}
+          <div className="hidden" aria-hidden="true">
+            {[-1, 1].map((offset) => {
+              const item = filtered[(lightboxIndex + offset + count) % count];
+              return (
+                <Image
+                  key={`preload-${item.src}`}
+                  src={item.src}
+                  alt=""
+                  width={1000}
+                  height={1000}
+                  sizes={LIGHTBOX_SIZES}
+                  loading="eager"
+                />
+              );
+            })}
           </div>
 
           {/* Następne */}
