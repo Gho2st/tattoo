@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from "react";
 
 const SIZES = [
   { label: "Mały (do 5 cm)", value: "maly" },
-  { label: "Średni (5–15 cm)", value: "sredni" },
+  { label: "Średni (od 5 do 15 cm)", value: "sredni" },
   { label: "Duży (15 cm+)", value: "duzy" },
   { label: "Rękaw / sleeve", value: "rekaw" },
 ];
@@ -266,13 +266,11 @@ export default function ContactForm() {
         role="status"
         className="flex flex-col items-center justify-center py-20 gap-6 text-center scroll-mt-32 outline-none"
       >
-        <span className="block w-10 h-px bg-[#c9a96e] mx-auto" />
         <h2
           className="text-4xl sm:text-5xl font-light text-[#f0ece3]"
-          style={{ fontFamily: "'Cormorant Garamond', serif" }}
         >
           Dzięki,
-          <em className="block italic text-[#f0ece3]/50">odezwę się wkrótce</em>
+          <em className="block not-italic text-[#f0ece3]/50">odezwę się wkrótce</em>
         </h2>
         <p className="text-base font-light leading-relaxed text-[#f0ece3]/75 max-w-sm">
           Odpowiadam zazwyczaj w ciągu 48 godzin.
@@ -289,11 +287,9 @@ export default function ContactForm() {
       noValidate
     >
       <div className="flex items-center gap-4 mb-8 lg:hidden">
-        <div className="flex-1 h-px bg-[#c9a96e]/10" />
         <span className="text-xs tracking-widest uppercase text-[#c9a96e]">
           Formularz
         </span>
-        <div className="flex-1 h-px bg-[#c9a96e]/10" />
       </div>
 
       <Field id="name" label="Imię" required error={fieldErrors.name}>
@@ -373,7 +369,7 @@ export default function ContactForm() {
             onClick={() => handleCoverChoice(true)}
             className={pill(isCover === true)}
           >
-            Tak — to cover
+            Tak, to cover
           </button>
         </div>
       </Field>
@@ -389,7 +385,7 @@ export default function ContactForm() {
             files={coverFiles}
             onClick={() => coverRef.current?.click()}
             hint="Dodaj zdjęcie tatuażu do zakrycia"
-            sub="JPG, PNG, WEBP — zdjęcie zostanie automatycznie pomniejszone"
+            sub="JPG, PNG, WEBP. Zdjęcie zostanie automatycznie pomniejszone"
             invalid={!!fieldErrors.coverPhoto}
           />
           <input
@@ -428,7 +424,7 @@ export default function ContactForm() {
         <textarea
           name="description"
           rows={5}
-          placeholder="Opisz swój pomysł — temat, nastrój, ważne detale..."
+          placeholder="Opisz swój pomysł: temat, nastrój, ważne detale..."
           className={`${inp} resize-none`}
         />
       </Field>
@@ -464,7 +460,7 @@ export default function ContactForm() {
                 type="button"
                 onClick={() => formRef.current?.requestSubmit()}
                 disabled={isPending}
-                className="text-xs tracking-widest uppercase px-4 py-2.5 rounded-full bg-[#c9a96e] text-[#0a0a08] hover:bg-[#d4b580] transition-colors disabled:opacity-60"
+                className="text-xs tracking-widest uppercase px-4 py-2.5 rounded-full bg-[#c9a96e] text-[#000000] hover:bg-[#d4b580] transition-colors disabled:opacity-60"
               >
                 Spróbuj ponownie
               </button>
@@ -512,7 +508,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={isPending || isProcessing}
-        className="mt-6 w-full py-5 text-sm font-medium tracking-widest uppercase bg-[#c9a96e] hover:bg-[#d4b580] text-[#0a0a08] transition-colors disabled:opacity-60"
+        className="mt-6 w-full py-5 text-sm font-medium tracking-widest uppercase bg-[#c9a96e] hover:bg-[#d4b580] text-[#000000] transition-colors disabled:opacity-60"
       >
         {isProcessing
           ? "Przetwarzanie zdjęć..."
@@ -546,7 +542,7 @@ const pill = (active) =>
   [
     "text-sm tracking-widest px-5 py-3 border rounded-full cursor-pointer transition-all",
     active
-      ? "bg-[#c9a96e] text-[#0a0a08] border-[#c9a96e]"
+      ? "bg-[#c9a96e] text-[#000000] border-[#c9a96e]"
       : "border-[#c9a96e]/30 text-[#f0ece3]/80 hover:border-[#c9a96e]/60 hover:text-[#f0ece3]",
   ].join(" ");
 

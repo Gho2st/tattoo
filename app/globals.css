@@ -2,10 +2,10 @@
 
 @layer utilities {
   .bg-primary {
-    @apply bg-[#0C0A09]/70;
+    @apply bg-[#000000]/70;
   }
   .bg-secondary {
-    @apply bg-[#1C1917]/70;
+    @apply bg-[#111111]/70;
   }
   .text-primary {
     @apply text-[#FFFFFF];
@@ -17,10 +17,11 @@
 
 html {
   scroll-behavior: smooth;
+  background-color: #000000;
 }
 
 body {
-  background-color: #14100c;
+  background-color: #000000;
   background-attachment: fixed;
   background-repeat: no-repeat;
 }

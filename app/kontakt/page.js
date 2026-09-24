@@ -21,7 +21,7 @@ const INFO = [
 export const metadata = {
   title: "Umów Sesję Tatuażu | Urszula Wolak • Kraków",
   description:
-    "Umów bezpłatną konsultację z Urszulą Wolak — doświadczoną tatuażystką z Krakowa. Realizm, mikrorealizm, kolor i covery. Szybka odpowiedź w ciągu 48h.",
+    "Umów bezpłatną konsultację z Urszulą Wolak, doświadczoną tatuażystką z Krakowa. Realizm, mikrorealizm, kolor i covery. Szybka odpowiedź w ciągu 48h.",
   alternates: {
     canonical: "https://wolaktattoo.pl/kontakt",
   },
@@ -34,18 +34,16 @@ export default function KontaktPage() {
         {/* Header */}
         <div className="max-w-2xl mb-16">
           <span className="flex items-center gap-3 text-xs tracking-widest uppercase text-[#c9a96e] mb-6">
-            <span className="block w-6 h-px bg-[#c9a96e]" />
             Kontakt
           </span>
           <h1
             className="text-5xl sm:text-6xl lg:text-7xl font-light leading-none text-[#f0ece3] mb-5"
-            style={{ fontFamily: "'Cormorant Garamond', serif" }}
           >
             Umów się
-            <em className="block italic text-[#f0ece3]/50">na sesję</em>
+            <em className="block not-italic text-[#f0ece3]/50">na sesję</em>
           </h1>
           <p className="text-base sm:text-lg leading-relaxed text-[#f0ece3]/80 max-w-md">
-            Napisz — przez formularz, Instagram, Whatsapp lub bezpośrednio.
+            Napisz przez formularz, Instagram, WhatsApp lub bezpośrednio.
             Chętnie omówię Twój pomysł i odpowiem na wszystkie pytania.
           </p>
         </div>
@@ -165,7 +163,7 @@ export default function KontaktPage() {
                 </a>
               </div>
               {/* === NOWA SEKCJA - BEZPŁATNE KONSULTACJE === */}
-              <div className="border border-[#c9a96e]/20 bg-[#0a0a08]/50 rounded-3xl p-7 sm:p-8 mt-4">
+              <div className="border border-[#c9a96e]/20 bg-[#000000]/50 rounded-3xl p-7 sm:p-8 mt-4">
                 <div className="flex gap-4">
                   <div className="w-9 h-9 rounded-2xl bg-[#c9a96e]/10 flex items-center justify-center shrink-0">
                     <span className="text-2xl">💬</span>
@@ -196,7 +194,7 @@ export default function KontaktPage() {
         {/* Mapa dojazdu */}
         <div className="border border-[#c9a96e]/15 rounded-2xl overflow-hidden mt-10">
           <iframe
-            title="Kult Tattoo Kraków — lokalizacja studia"
+            title="Kult Tattoo Kraków, lokalizacja studia"
             src="https://www.google.com/maps?q=Kult+Tattoo+Krak%C3%B3w&output=embed"
             width="100%"
             height="280"

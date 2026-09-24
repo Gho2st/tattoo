@@ -7,19 +7,19 @@ const items = [
     num: "01",
     question: "Czy tatuaż może łączyć różne style?",
     answer:
-      "Zdecydowanie — to jedna z rzeczy, które lubię najbardziej. Swobodnie łączę elementy graficzne, realistyczne, ornamentalne i ilustracyjne, tworząc autorskie kompozycje dopasowane dokładnie do Ciebie. Każdy projekt jest inny, bo każdy człowiek jest inny.",
+      "Zdecydowanie, to jedna z rzeczy, które lubię najbardziej. Swobodnie łączę elementy graficzne, realistyczne, ornamentalne i ilustracyjne, tworząc autorskie kompozycje dopasowane dokładnie do Ciebie. Każdy projekt jest inny, bo każdy człowiek jest inny.",
   },
   {
     num: "02",
     question: "Jak wygląda tatuaż realistyczny w kolorze?",
     answer:
-      "To styl, który wymaga dużej precyzji i znajomości barwy. Łączę malarskie wyczucie z techniczną dokładnością — dbam o to, żeby kolor zachował głębię, nasycenie i czytelność również po wygojeniu. Zależy mi na naturalnych efektach i dynamicznych kontrastach.",
+      "To styl, który wymaga dużej precyzji i znajomości barwy. Łączę malarskie wyczucie z techniczną dokładnością. Dbam o to, żeby kolor zachował głębię, nasycenie i czytelność również po wygojeniu. Zależy mi na naturalnych efektach i dynamicznych kontrastach.",
   },
   {
     num: "03",
     question: "Na czym polega cover tatuażu?",
     answer:
-      "Cover to zakrycie starego lub nieudanego tatuażu nowym projektem — tak, żeby całość wyglądała spójnie i naturalnie. Doradztwo, projektowanie i wykonanie traktuję jako jeden proces. Dobry cover nie tylko maskuje — nadaje temu miejscu na skórze zupełnie nowy charakter.",
+      "Cover to zakrycie starego lub nieudanego tatuażu nowym projektem tak, żeby całość wyglądała spójnie i naturalnie. Doradztwo, projektowanie i wykonanie traktuję jako jeden proces. Dobry cover nie tylko maskuje, ale nadaje temu miejscu na skórze zupełnie nowy charakter.",
   },
 ];
 
@@ -35,19 +35,16 @@ export default function Specializations() {
     >
       {/* Eyebrow */}
       <span className="flex items-center gap-3 text-xs tracking-[0.38em] uppercase text-[#c9a96e] mb-7">
-        <span className="block w-6 h-px bg-[#c9a96e]" />
         FAQ
       </span>
 
       {/* Główny nagłówek sekcji - zostaje h2 */}
       <h2
         className="text-[2.2rem] sm:text-[2.8rem] lg:text-[3.5rem] font-light leading-[1.04] text-[#f0ece3] m-0 mb-10 sm:mb-12"
-        style={{ fontFamily: "'Cormorant Garamond', serif" }}
       >
-        Specjalizacje —
-        <em className="block italic text-[#f0ece3]/42">
-          {" "}
-          realizm, mikrorealizm, kolor i covery
+        Specjalizacje
+        <em className="block not-italic text-[#f0ece3]/42">
+          Realizm, mikrorealizm, kolor i covery
         </em>
       </h2>
 
@@ -64,7 +61,7 @@ export default function Specializations() {
             >
               {/* Numer + pytanie jako h3 */}
               <div className="flex items-center gap-3.5 sm:gap-4 flex-1">
-                <span className="text-[0.46rem] tracking-[0.22em] text-[#c9a96e]/45 tabular-nums flex-shrink-0">
+                <span className="text-xs tracking-[0.22em] text-[#c9a96e]/60 tabular-nums flex-shrink-0">
                   {num}
                 </span>
 
@@ -75,7 +72,6 @@ export default function Specializations() {
                       ? "text-[#f0ece3]"
                       : "text-[#f0ece3]/85 group-hover:text-[#f0ece3]",
                   ].join(" ")}
-                  style={{ fontFamily: "'Cormorant Garamond', serif" }}
                 >
                   {question}
                 </h3>
@@ -100,7 +96,7 @@ export default function Specializations() {
                 open === i ? "max-h-[400px]" : "max-h-0",
               ].join(" ")}
             >
-              <p className="text-xs sm:text-base font-light leading-[1.9] text-[#f0ece3]/42 pb-6 sm:pb-7 pl-[2.1rem] sm:pl-[2.4rem] m-0">
+              <p className="text-sm sm:text-base font-light leading-[1.9] text-[#f0ece3]/75 pb-6 sm:pb-7 pl-[2.1rem] sm:pl-[2.4rem] m-0">
                 {answer}
               </p>
             </div>
@@ -110,7 +106,6 @@ export default function Specializations() {
 
       {/* Link do pełnego FAQ */}
       <div className="mt-12 flex items-center justify-center gap-4">
-        <span className="block w-8 h-px bg-[#c9a96e]/30" />
         <a
           href="https://kulttattoo.pl/faq/"
           target="_blank"
@@ -119,7 +114,6 @@ export default function Specializations() {
         >
           Tutaj znajdziesz więcej odpowiedzi na nurtujące pytania →
         </a>
-        <span className="block w-8 h-px bg-[#c9a96e]/30" />
       </div>
     </section>
   );

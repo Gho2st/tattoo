@@ -78,7 +78,6 @@ export default function Footer() {
           <Link href="/" className="no-underline flex flex-col gap-1">
             <span
               className="text-xl sm:text-2xl 2xl:text-3xl font-light tracking-[0.12em] uppercase text-[#f0ece3] leading-none"
-              style={{ fontFamily: "'Cormorant Garamond', serif" }}
             >
               Urszula Wolak
             </span>
@@ -91,7 +90,7 @@ export default function Footer() {
           </p>
           {/* Logo */}
           <Image
-            src="/images/logo/logo.png"
+            src="/images/logo/logo1.png"
             alt="Urszula Wolak Tattoo"
             width={48}
             height={48}

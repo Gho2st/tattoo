@@ -44,14 +44,14 @@ export default function Navbar() {
           "px-5 sm:px-8 lg:px-12",
           "transition-all duration-300",
           scrolled
-            ? "h-14 sm:h-16 backdrop-blur-md border-b border-[#c9a96e]/15"
+            ? "h-14 sm:h-16 bg-black/80 backdrop-blur-md border-b border-[#c9a96e]/15"
             : "h-16 sm:h-20 bg-transparent",
         ].join(" ")}
       >
         {/* Logo */}
         <Link href="/" className="shrink-0 no-underline" onClick={close}>
           <Image
-            src="/images/logo/logo.png"
+            src="/images/logo/logo1.png"
             alt="Urszula Wolak Tattoo"
             width={72}
             height={72}
@@ -72,7 +72,6 @@ export default function Navbar() {
               <Link
                 href={link.href}
                 className="group relative text-xs 2xl:text-sm tracking-[0.22em] uppercase text-white/80 hover:text-[#f0ece3] transition-colors duration-200 no-underline"
-                style={{ fontFamily: "'Montserrat', sans-serif" }}
               >
                 {link.label}
                 <span className="absolute left-0 -bottom-0.5 h-px w-0 bg-[#c9a96e] transition-all duration-300 group-hover:w-full" />
@@ -86,8 +85,7 @@ export default function Navbar() {
           <div className="w-px h-6 bg-[#c9a96e]/20" />
           <Link
             href="/kontakt"
-            className="text-[0.58rem] 2xl:text-xs font-medium tracking-[0.26em] uppercase bg-[#c9a96e] hover:bg-[#d4b580] text-[#0a0a08] px-5 py-2.5 transition-colors duration-200 hover:-translate-y-px no-underline"
-            style={{ fontFamily: "'Montserrat', sans-serif" }}
+            className="text-xs font-medium tracking-[0.26em] uppercase bg-[#c9a96e] hover:bg-[#d4b580] text-[#000000] px-5 py-2.5 transition-colors duration-200 hover:-translate-y-px no-underline"
           >
             Umów sesję
           </Link>
@@ -127,7 +125,7 @@ export default function Navbar() {
         className={[
           "fixed inset-0 z-40 lg:hidden",
           "flex flex-col items-center justify-center",
-          "bg-[#0a0a08]",
+          "bg-[#000000]",
           "transition-opacity duration-300",
           menuOpen
             ? "opacity-100 pointer-events-auto"
@@ -154,13 +152,11 @@ export default function Navbar() {
               <div className="flex items-baseline gap-4">
                 <span
                   className="text-xs tracking-[0.25em] text-[#c9a96e]/40 tabular-nums"
-                  style={{ fontFamily: "'Montserrat', sans-serif" }}
                 >
                   0{i + 1}
                 </span>
                 <span
                   className="text-xl  font-light tracking-wide text-[#f0ece3]/75 group-hover:text-[#f0ece3] transition-colors duration-200"
-                  style={{ fontFamily: "'Cormorant Garamond', serif" }}
                 >
                   {link.label}
                 </span>
@@ -186,8 +182,7 @@ export default function Navbar() {
             href="https://www.instagram.com/wolakurszula/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[0.52rem] tracking-[0.28em] uppercase text-[#6b6560] hover:text-[#c9a96e] transition-colors duration-200 no-underline"
-            style={{ fontFamily: "'Montserrat', sans-serif" }}
+            className="text-xs tracking-[0.28em] uppercase text-[#a8a29e] hover:text-[#c9a96e] transition-colors duration-200 no-underline"
           >
             @wolakurszula
           </a>
@@ -195,8 +190,7 @@ export default function Navbar() {
           <Link
             href="/kontakt"
             onClick={close}
-            className="text-[0.58rem] font-medium tracking-[0.26em] uppercase bg-[#c9a96e] hover:bg-[#d4b580] text-[#0a0a08] px-7 py-3.5 transition-colors duration-200 no-underline"
-            style={{ fontFamily: "'Montserrat', sans-serif" }}
+            className="text-xs font-medium tracking-[0.26em] uppercase bg-[#c9a96e] hover:bg-[#d4b580] text-[#000000] px-7 py-3.5 transition-colors duration-200 no-underline"
           >
             Umów sesję
           </Link>

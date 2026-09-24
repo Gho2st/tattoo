@@ -6,22 +6,26 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const SLIDES = [
-  "/images/hero/1.webp",
-  "/images/hero/2.webp",
-  "/images/hero/3.webp",
-  "/images/hero/4.webp",
+  {
+    src: "/images/realizm/tatuaz-realistyczny-portret-psa-przedramie.webp",
+    alt: "Realistyczny tatuaż portret psa na przedramieniu. Urszula Wolak, Kraków",
+  },
+  {
+    src: "/images/realizm/tatuaz-papuga-ara-w-locie-lydka.webp",
+    alt: "Realistyczny tatuaż papugi ara w locie na łydce. Urszula Wolak, Kraków",
+  },
+  {
+    src: "/images/damskie/tatuaz-polne-kwiaty-mak-chabry-przedramie.webp",
+    alt: "Tatuaż polnych kwiatów z makiem, chabrami i truskawką na przedramieniu. Urszula Wolak, Kraków",
+  },
 ];
 
 const INTERVAL_MS = 5000;
 const SWIPE_THRESHOLD = 50;
 
-// Trzy warstwy w jednym elemencie — kolejność ma znaczenie,
-// pierwszy gradient maluje się na wierzchu
-const OVERLAY = [
-  "radial-gradient(90% 70% at 10% 100%, rgba(201,169,110,0.16), transparent 60%)",
-  "radial-gradient(70% 60% at 95% 20%, rgba(156,74,47,0.14), transparent 65%)",
-  "linear-gradient(to top, #14100C 0%, rgba(20,16,12,0.55) 40%, transparent 75%)",
-].join(", ");
+// Przyciemnienie od dołu pod tekstem
+const OVERLAY =
+  "linear-gradient(to top, #000000 0%, rgba(0,0,0,0.55) 40%, transparent 75%)";
 
 export default function Hero() {
   const [current, setCurrent] = useState(0);
@@ -81,18 +85,18 @@ export default function Hero() {
 
   return (
     <section
-      className="relative w-full min-h-svh bg-[#14100C] flex flex-col overflow-hidden"
+      className="relative w-full min-h-svh bg-[#000000] flex flex-col overflow-hidden"
       onMouseEnter={pauseTimer}
       onMouseLeave={resumeTimer}
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
     >
       {/* Slides — pełna saturacja, przyciemnia dopiero gradient */}
-      {SLIDES.map((src, i) => (
+      {SLIDES.map(({ src, alt }, i) => (
         <Image
           key={src}
           src={src}
-          alt={`Urszula Wolak - tatuaż realistyczny ${i + 1}`}
+          alt={alt}
           fill
           priority={i === 0}
           loading={i === 0 ? "eager" : "lazy"}
@@ -104,7 +108,7 @@ export default function Hero() {
         />
       ))}
 
-      {/* Duotone: ciepłe światło pod tekstem, rdzawy kontrapunkt z prawej */}
+      {/* Przyciemnienie pod tekstem */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{ backgroundImage: OVERLAY }}
@@ -138,18 +142,15 @@ export default function Hero() {
       {/* Treść */}
       <div className="relative z-10 mt-auto flex flex-col px-5 pb-10 sm:px-8 sm:pb-12 lg:px-20 lg:pb-20 2xl:pb-32">
         <span className="hidden md:flex  items-center gap-3 text-[0.7rem] tracking-[0.4em] uppercase text-[#c9a96e] mb-4">
-          <span className="block w-6 h-px bg-[#9C4A2F]" />
           Profesjonalne tatuaże w Krakowie
         </span>
 
         <h1
           className="font-light leading-[1.05] text-[#f0ece3] text-3xl sm:text-4xl lg:text-5xl 2xl:text-6xl mb-6"
-          style={{ fontFamily: "'Cormorant Garamond', serif" }}
         >
           Urszula Wolak
           <br />
           <span className="text-[#f0ece3]/80">
-            {" "}
             Tatuaż realistyczny i mikrorealizm
           </span>
         </h1>
@@ -187,7 +188,7 @@ export default function Hero() {
             </Link>
             <Link
               href="/kontakt"
-              className="text-center px-7 py-3.5 text-sm tracking-widest font-medium bg-[#c9a96e] hover:bg-[#d4b580] text-[#14100C] transition-all"
+              className="text-center px-7 py-3.5 text-sm tracking-widest font-medium bg-[#c9a96e] hover:bg-[#d4b580] text-[#000000] transition-all"
             >
               Umów sesję
             </Link>

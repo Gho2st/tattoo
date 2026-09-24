@@ -5,24 +5,156 @@ import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const ALL_ITEMS = [
-  { src: "/images/realizm/1.webp", cat: "realizm" },
-  { src: "/images/realizm/2.webp", cat: "realizm" },
-  { src: "/images/realizm/3.webp", cat: "realizm" },
-  { src: "/images/realizm/4.webp", cat: "realizm" },
-  { src: "/images/realizm/5.webp", cat: "realizm" },
-  { src: "/images/realizm/6.webp", cat: "realizm" },
-  { src: "/images/realizm/7.webp", cat: "realizm" },
-  { src: "/images/realizm/8.webp", cat: "realizm" },
-  { src: "/images/damskie/1.webp", cat: "damskie" },
-  { src: "/images/damskie/2.webp", cat: "damskie" },
-  { src: "/images/damskie/3.webp", cat: "damskie" },
-  { src: "/images/damskie/4.webp", cat: "damskie" },
-  { src: "/images/damskie/5.webp", cat: "damskie" },
-  { src: "/images/damskie/6.webp", cat: "damskie" },
-  { src: "/images/kreskówki/1.webp", cat: "kreskówki" },
-  { src: "/images/kreskówki/2.webp", cat: "kreskówki" },
-  { src: "/images/kreskówki/3.webp", cat: "kreskówki" },
-  { src: "/images/kreskówki/4.webp", cat: "kreskówki" },
+  {
+    src: "/images/realizm/tatuaz-rekaw-rafa-koralowa-skrzydlica.webp",
+    cat: "realizm",
+    title: "Kolorowy rękaw z rafą koralową i skrzydlicą",
+  },
+  {
+    src: "/images/realizm/tatuaz-realistyczny-buldog-francuski-lydka.webp",
+    cat: "realizm",
+    title: "Realistyczny portret buldoga francuskiego na łydce",
+  },
+  {
+    src: "/images/realizm/tatuaz-kolorowa-papuga-akwarela-przedramie.webp",
+    cat: "realizm",
+    title: "Kolorowa papuga z akwarelowym tłem na przedramieniu",
+  },
+  {
+    src: "/images/realizm/tatuaz-realistyczny-portret-psa-przedramie.webp",
+    cat: "realizm",
+    title: "Realistyczny portret psa na przedramieniu",
+  },
+  {
+    src: "/images/realizm/tatuaz-portret-wodza-indianskiego-ramie.webp",
+    cat: "realizm",
+    title: "Portret wodza indiańskiego w pióropuszu na ramieniu",
+  },
+  {
+    src: "/images/realizm/tatuaz-realistyczny-portret-psa-kolor.webp",
+    cat: "realizm",
+    title: "Kolorowy realistyczny portret psa",
+  },
+  {
+    src: "/images/realizm/tatuaz-dark-fantasy-portret-ogien-udo.webp",
+    cat: "realizm",
+    title: "Mroczny portret fantasy z ogniem na udzie",
+  },
+  {
+    src: "/images/realizm/tatuaz-papuga-ara-w-locie-lydka.webp",
+    cat: "realizm",
+    title: "Papuga ara w locie na łydce",
+  },
+  {
+    src: "/images/realizm/tatuaz-wojowniczka-zlota-zbroja-wieniec-laurowy.webp",
+    cat: "realizm",
+    title: "Wojowniczka w złotej zbroi z wieńcem laurowym na przedramieniu",
+  },
+  {
+    src: "/images/realizm/tatuaz-astronauta-czarno-szary-przedramie.webp",
+    cat: "realizm",
+    title: "Czarno-szary astronauta na przedramieniu",
+  },
+  {
+    src: "/images/damskie/tatuaz-ryby-bojowniki-akwarela-zebra.webp",
+    cat: "damskie",
+    title: "Dwie ryby bojowniki w akwareli na żebrach",
+  },
+  {
+    src: "/images/damskie/tatuaz-chabry-lawenda-przedramie.webp",
+    cat: "damskie",
+    title: "Chabry i lawenda na przedramieniu",
+  },
+  {
+    src: "/images/damskie/tatuaz-zolw-morski-akwarela-noga.webp",
+    cat: "damskie",
+    title: "Żółw morski w akwareli na nodze",
+  },
+  {
+    src: "/images/damskie/tatuaz-waz-czerwone-maki-biodro.webp",
+    cat: "damskie",
+    title: "Wąż z czerwonymi makami na biodrze",
+  },
+  {
+    src: "/images/damskie/tatuaz-maliny-z-kwiatem-reka.webp",
+    cat: "damskie",
+    title: "Maliny z kwiatem na ręce",
+  },
+  {
+    src: "/images/damskie/tatuaz-kolorowy-rekaw-kwiaty.webp",
+    cat: "damskie",
+    title: "Kolorowy rękaw kwiatowy ze słonecznikiem i makami",
+  },
+  {
+    src: "/images/damskie/tatuaz-polne-kwiaty-mak-chabry-przedramie.webp",
+    cat: "damskie",
+    title: "Polne kwiaty z makiem, chabrami i truskawką na przedramieniu",
+  },
+  {
+    src: "/images/damskie/tatuaz-jaskolki-czerwone-slonce-lopatka.webp",
+    cat: "damskie",
+    title: "Dwie jaskółki z czerwonym słońcem na łopatce",
+  },
+  {
+    src: "/images/damskie/tatuaz-portret-kobiety-feniks-udo.webp",
+    cat: "damskie",
+    title: "Portret kobiety z feniksem na udzie",
+  },
+  {
+    src: "/images/damskie/tatuaz-pin-up-wiedzma-diablica-lydki.webp",
+    cat: "damskie",
+    title: "Wiedźma i diablica w stylu pin-up na łydkach",
+  },
+  {
+    src: "/images/damskie/tatuaz-wiosenne-kwiaty-narcyz-dzwonki.webp",
+    cat: "damskie",
+    title: "Wiosenne kwiaty: narcyz, dzwonki i szafirki",
+  },
+  {
+    src: "/images/kreskowki/tatuaz-lola-bunny-kosmiczny-mecz-przedramie.webp",
+    cat: "kreskówki",
+    title: "Lola Bunny z Kosmicznego meczu na przedramieniu",
+  },
+  {
+    src: "/images/kreskowki/tatuaz-goku-shenron-dragon-ball-lydka.webp",
+    cat: "kreskówki",
+    title: "Goku i smok Shenron z Dragon Ball na łydce",
+  },
+  {
+    src: "/images/kreskowki/tatuaz-atomowki-powerpuff-girls-reka.webp",
+    cat: "kreskówki",
+    title: "Atomówki w akwareli na ręce",
+  },
+  {
+    src: "/images/kreskowki/tatuaz-postac-anime-ksiezyc-przedramie.webp",
+    cat: "kreskówki",
+    title: "Postać anime na tle księżyca na przedramieniu",
+  },
+  {
+    src: "/images/kreskowki/tatuaz-pokemon-mew-minionek-ramie.webp",
+    cat: "kreskówki",
+    title: "Pokémon Mew i Minionek na ramieniu",
+  },
+  {
+    src: "/images/kreskowki/tatuaz-komiksowa-postac-kolor-przedramie.webp",
+    cat: "kreskówki",
+    title: "Kolorowa postać komiksowa na przedramieniu",
+  },
+  {
+    src: "/images/kreskowki/tatuaz-szkielet-perkusista-akwarela-przedramie.webp",
+    cat: "kreskówki",
+    title: "Szkielet grający na perkusji w akwareli na przedramieniu",
+  },
+  {
+    src: "/images/kreskowki/tatuaz-mala-mi-muminki-motyl-piwonia.webp",
+    cat: "kreskówki",
+    title: "Mała Mi z Muminków z motylem i piwonią",
+  },
+  {
+    src: "/images/kreskowki/tatuaz-wloczykij-mala-mi-muminki-lydka.webp",
+    cat: "kreskówki",
+    title: "Włóczykij i Mała Mi z Muminków na łydce",
+  },
 ];
 
 const FILTERS = [
@@ -56,13 +188,15 @@ export default function Gallery() {
   const openLightbox = (index) => setLightboxIndex(index);
   const closeLightbox = () => setLightboxIndex(null);
 
+  const count = filtered.length;
+
   const prev = useCallback(() => {
-    setLightboxIndex((prev) => (prev - 1 + filtered.length) % filtered.length);
-  }, [filtered.length]);
+    setLightboxIndex((prev) => (prev - 1 + count) % count);
+  }, [count]);
 
   const next = useCallback(() => {
-    setLightboxIndex((prev) => (prev + 1) % filtered.length);
-  }, [filtered.length]);
+    setLightboxIndex((prev) => (prev + 1) % count);
+  }, [count]);
 
   // Swipe
   const touchStartX = useRef(null);
@@ -107,16 +241,14 @@ export default function Gallery() {
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-8">
         <div>
           <span className="flex items-center gap-3 text-xs tracking-widest uppercase text-[#c9a96e] mb-3">
-            <span className="block w-6 h-px bg-[#c9a96e]" />
             Galeria
           </span>
           <h2
             className="text-3xl sm:text-4xl font-light leading-tight text-[#f0ece3]"
-            style={{ fontFamily: "'Cormorant Garamond', serif" }}
           >
             Portfolio tatuaży
-            <em className="block italic text-[#f0ece3]/40 text-2xl sm:text-3xl">
-              — moje prace
+            <em className="block not-italic text-[#f0ece3]/40 text-2xl sm:text-3xl">
+              Moje prace
             </em>
           </h2>
         </div>
@@ -128,7 +260,7 @@ export default function Gallery() {
               onClick={() => handleFilter(value)}
               className={`px-5 py-2 text-xs tracking-widest uppercase rounded-full border transition-all duration-200 whitespace-nowrap ${
                 active === value
-                  ? "bg-[#c9a96e] text-[#0a0a08] border-[#c9a96e]"
+                  ? "bg-[#c9a96e] text-[#000000] border-[#c9a96e]"
                   : "border-[#c9a96e]/30 text-[#f0ece3]/60 hover:border-[#c9a96e]/60 hover:text-[#f0ece3]"
               }`}
             >
@@ -144,11 +276,12 @@ export default function Gallery() {
           <button
             key={item.src}
             onClick={() => openLightbox(i)}
-            className="relative aspect-square overflow-hidden group cursor-pointer bg-[#111]"
+            aria-label={`Powiększ: ${item.title}`}
+            className="relative aspect-square overflow-hidden group cursor-pointer bg-black"
           >
             <Image
               src={item.src}
-              alt={`Tatuaż ${item.cat} — Urszula Wolak`}
+              alt={`Tatuaż: ${item.title}. Urszula Wolak, Kraków`}
               fill
               sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
               className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -179,7 +312,6 @@ export default function Gallery() {
 
       {/* Instagram */}
       <div className="mt-10 flex items-center justify-center gap-4">
-        <span className="block w-8 h-px bg-[#c9a96e]/30" />
         <a
           href="https://www.instagram.com/wolakurszula/"
           target="_blank"
@@ -188,7 +320,6 @@ export default function Gallery() {
         >
           Więcej na Instagramie →
         </a>
-        <span className="block w-8 h-px bg-[#c9a96e]/30" />
       </div>
 
       {/* LIGHTBOX */}
@@ -201,6 +332,7 @@ export default function Gallery() {
         >
           <button
             onClick={closeLightbox}
+            aria-label="Zamknij podgląd"
             className="absolute top-6 right-6 text-4xl text-white/60 hover:text-white z-10"
           >
             ✕
@@ -212,6 +344,7 @@ export default function Gallery() {
               e.stopPropagation();
               prev();
             }}
+            aria-label="Poprzednie zdjęcie"
             className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-10 p-4"
           >
             <ChevronLeft
@@ -227,7 +360,7 @@ export default function Gallery() {
           >
             <Image
               src={filtered[lightboxIndex].src}
-              alt="Tatuaż Urszula Wolak"
+              alt={`Tatuaż: ${filtered[lightboxIndex].title}. Urszula Wolak, Kraków`}
               fill
               sizes="90vw"
               className="object-contain"
@@ -241,6 +374,7 @@ export default function Gallery() {
               e.stopPropagation();
               next();
             }}
+            aria-label="Następne zdjęcie"
             className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-10 p-4"
           >
             <ChevronRight

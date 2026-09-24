@@ -5,9 +5,12 @@ import Gallery from "..//components/homepage/Gallery";
 import Hero from "..//components/homepage/Hero";
 
 export const metadata = {
-  title: "Urszula Wolak — Tatuaż realistyczny i mikrorealizm | Kraków",
+  title: "Urszula Wolak | Tatuaż realistyczny i mikrorealizm | Kraków",
   description:
-    "Urszula Wolak — tatuaże realistyczne, mikrorealizm i covery w Krakowie. Pracownia Kult Tattoo. Autorskie kompozycje. Umów sesję.",
+    "Urszula Wolak: tatuaże realistyczne, mikrorealizm i covery w Krakowie. Pracownia Kult Tattoo. Autorskie kompozycje. Umów sesję.",
+  alternates: {
+    canonical: "https://wolaktattoo.pl/",
+  },
 };
 
 export default function Home() {

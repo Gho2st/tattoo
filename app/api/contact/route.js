@@ -62,16 +62,16 @@ function createEmailTemplate({
   return `
     <div style="font-family: sans-serif; max-width: 600px; color: #1a1a1a;">
       <h2 style="border-bottom: 2px solid #c9a96e; padding-bottom: 8px; color: #0a0a08;">
-        Nowe zapytanie — Urszula Wolak Tattoo
+        Nowe zapytanie: Urszula Wolak Tattoo
       </h2>
 
       <table style="width: 100%; border-collapse: collapse; margin-top: 16px;">
         ${row("Imię", escapeHtml(name))}
         ${row("Kontakt", escapeHtml(contact))}
         ${row("Miejsce na ciele", escapeHtml(bodyPart))}
-        ${row("Rozmiar", escapeHtml(size) || "—")}
+        ${row("Rozmiar", escapeHtml(size) || "brak")}
         ${row("Cover?", isCover === "true" ? "Tak" : "Nie")}
-        ${row("Preferowany termin", escapeHtml(timing) || "—")}
+        ${row("Preferowany termin", escapeHtml(timing) || "brak")}
         ${
           attachments.length > 0
             ? row(
@@ -186,7 +186,7 @@ export async function POST(request) {
       from: `"Urszula Wolak Tattoo" <${MAIL_USER}>`,
       replyTo: contact.includes("@") ? contact : undefined,
       to: "dominik.jojczyk@gmail.com",
-      subject: `Nowe zapytanie od ${name} — ${bodyPart}`,
+      subject: `Nowe zapytanie od ${name}: ${bodyPart}`,
       html: createEmailTemplate({
         name,
         contact,
