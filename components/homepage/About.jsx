@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { ArrowRight } from "lucide-react";
 
 const tags = ["Kolor realistyczny", "Covery", "Szarości", "Kompozycja"];
 
@@ -90,12 +91,18 @@ export default function About() {
               ))}
             </div>
 
-            {/* Link */}
+            {/* Przycisk do galerii */}
             <Link
               href="/#portfolio"
-              className="inline-flex items-center gap-3 text-xs tracking-[0.3em] uppercase text-[#c9a96e] hover:text-white transition-colors group"
+              className="group inline-flex items-center justify-center gap-3 self-stretch sm:self-start text-xs font-medium tracking-widest uppercase text-[#c9a96e] border border-[#c9a96e] hover:bg-[#c9a96e] hover:text-[#000000] px-8 py-4 no-underline transition-colors duration-200"
             >
-              ZOBACZ PORTFOLIO
+              Zobacz portfolio
+              <ArrowRight
+                size={16}
+                strokeWidth={1.75}
+                aria-hidden="true"
+                className="transition-transform duration-200 group-hover:translate-x-1"
+              />
             </Link>
           </div>
         </div>

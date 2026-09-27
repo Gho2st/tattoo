@@ -76,9 +76,7 @@ export default function Footer() {
         {/* Brand */}
         <div className="flex flex-col gap-4">
           <Link href="/" className="no-underline flex flex-col gap-1">
-            <span
-              className="text-xl sm:text-2xl 2xl:text-3xl font-light tracking-[0.12em] uppercase text-[#f0ece3] leading-none"
-            >
+            <span className="text-xl sm:text-2xl 2xl:text-3xl font-light tracking-[0.12em] uppercase text-[#f0ece3] leading-none">
               Urszula Wolak
             </span>
             <span className="text-xs 2xl:text-base tracking-[0.35em] uppercase text-[#c9a96e]">
@@ -174,10 +172,6 @@ export default function Footer() {
             @wolakurszula
           </span>
         </a>
-
-        <span className="text-xs text-secondary tracking-wide order-3">
-          Made with ♥ in Kraków
-        </span>
       </div>
     </footer>
   );

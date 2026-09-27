@@ -146,7 +146,7 @@ export default function Hero() {
         </span>
 
         <h1
-          className="font-light leading-[1.05] text-[#f0ece3] text-3xl sm:text-4xl lg:text-5xl 2xl:text-6xl mb-6"
+          className="font-light leading-[1.05] text-[#f0ece3] text-3xl sm:text-4xl lg:text-5xl 2xl:text-6xl mb-4 sm:mb-6"
         >
           Urszula Wolak
           <br />
@@ -155,42 +155,48 @@ export default function Hero() {
           </span>
         </h1>
 
-        <p className="max-w-md text-base sm:text-lg text-[#f0ece3]/70 mb-8">
+        <p className="max-w-md text-sm sm:text-lg text-[#f0ece3]/80 mb-5 sm:mb-8">
           Indywidualne projekty • Realizm • Mikrorealizm • Kolor • Covery
         </p>
 
         {/* Dots + CTA */}
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-3 sm:gap-6 sm:flex-row sm:items-center sm:justify-between">
           {/* Kropki */}
           <div className="flex gap-2">
             {SLIDES.map((_, i) => (
+              // Większy obszar kliknięcia niż sama kreska — łatwiej trafić palcem
               <button
                 key={i}
                 onClick={() => goTo(i)}
                 aria-label={`Idź do slajdu ${i + 1}`}
                 aria-current={i === current}
-                className={`h-[3px] rounded-full transition-all duration-500 ${
-                  i === current
-                    ? "w-10 bg-[#c9a96e]"
-                    : "w-5 bg-[#c9a96e]/25 hover:bg-[#c9a96e]/50"
-                }`}
-              />
+                className="group py-3"
+              >
+                <span
+                  className={`block h-[3px] rounded-full transition-all duration-500 ${
+                    i === current
+                      ? "w-10 bg-[#c9a96e]"
+                      : "w-5 bg-[#c9a96e]/40 group-hover:bg-[#c9a96e]/60"
+                  }`}
+                />
+              </button>
             ))}
           </div>
 
           {/* Przyciski */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-            <Link
-              href="/#portfolio"
-              className="text-center px-6 py-3.5 text-sm tracking-widest border border-[#f0ece3]/30 hover:border-[#c9a96e]/60 text-[#f0ece3]/80 hover:text-[#f0ece3] transition-all"
-            >
-              Zobacz portfolio
-            </Link>
+          {/* Na telefonie obok siebie, główny przycisk pierwszy */}
+          <div className="grid grid-cols-2 sm:flex sm:flex-row sm:items-center gap-3">
             <Link
               href="/kontakt"
-              className="text-center px-7 py-3.5 text-sm tracking-widest font-medium bg-[#c9a96e] hover:bg-[#d4b580] text-[#000000] transition-all"
+              className="sm:order-2 text-center px-2 sm:px-7 py-3.5 text-[13px] sm:text-sm tracking-wide sm:tracking-widest font-medium bg-[#c9a96e] hover:bg-[#d4b580] text-[#000000] transition-all"
             >
               Umów sesję
+            </Link>
+            <Link
+              href="/#portfolio"
+              className="sm:order-1 text-center px-2 sm:px-6 py-3.5 text-[13px] sm:text-sm tracking-wide sm:tracking-widest border border-[#f0ece3]/40 hover:border-[#c9a96e]/60 text-[#f0ece3]/90 hover:text-[#f0ece3] transition-all"
+            >
+              Zobacz portfolio
             </Link>
           </div>
         </div>
