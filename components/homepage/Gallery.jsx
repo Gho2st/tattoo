@@ -209,7 +209,7 @@ export default function Gallery() {
     touchStartX.current = e.touches[0].clientX;
   };
   const handleTouchEnd = (e) => {
-    if (!touchStartX.current) return;
+    if (touchStartX.current === null) return;
     const diff = touchStartX.current - e.changedTouches[0].clientX;
     if (Math.abs(diff) > 50) {
       diff > 0 ? next() : prev();
@@ -258,12 +258,13 @@ export default function Gallery() {
           </h2>
         </div>
 
-        <div className="flex flex-wrap gap-2 justify-end">
+        <div className="flex flex-wrap gap-2 sm:justify-end">
           {FILTERS.map(({ label, value }) => (
             <button
               key={value}
               onClick={() => handleFilter(value)}
-              className={`px-5 py-2 text-xs tracking-widest uppercase rounded-full border transition-all duration-200 whitespace-nowrap ${
+              aria-pressed={active === value}
+              className={`px-4 sm:px-5 py-2.5 sm:py-2 text-xs tracking-widest uppercase rounded-full border transition-all duration-200 whitespace-nowrap ${
                 active === value
                   ? "bg-[#c9a96e] text-[#000000] border-[#c9a96e]"
                   : "border-[#c9a96e]/30 text-[#f0ece3]/60 hover:border-[#c9a96e]/60 hover:text-[#f0ece3]"

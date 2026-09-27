@@ -105,12 +105,12 @@ export default function Specializations() {
       </div>
 
       {/* Link do pełnego FAQ */}
-      <div className="mt-12 flex items-center justify-center gap-4">
+      <div className="mt-12 text-center">
         <a
           href="https://kulttattoo.pl/faq/"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-sm tracking-widest uppercase text-[#c9a96e] hover:text-[#d4b580] transition-colors duration-200 flex items-center gap-2"
+          className="text-sm sm:text-base text-[#c9a96e] hover:text-[#d4b580] underline underline-offset-4 decoration-[#c9a96e]/40 transition-colors duration-200"
         >
           Tutaj znajdziesz więcej odpowiedzi na nurtujące pytania →
         </a>

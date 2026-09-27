@@ -8,6 +8,11 @@ const inter = Inter({
   display: "swap",
 });
 
+// Kolor paska przeglądarki na telefonie
+export const viewport = {
+  themeColor: "#000000",
+};
+
 export const metadata = {
   metadataBase: new URL("https://wolaktattoo.pl"),
   title: "Urszula Wolak | Tatuaż realistyczny i mikrorealizm | Kraków",

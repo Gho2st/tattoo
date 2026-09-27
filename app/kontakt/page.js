@@ -58,7 +58,7 @@ export default function KontaktPage() {
                 {INFO.map(({ label, value, href }) => (
                   <div
                     key={label}
-                    className="flex items-center justify-between px-6 py-5 border-b border-[#c9a96e]/10 last:border-b-0"
+                    className="flex flex-col items-start gap-1.5 sm:flex-row sm:items-center sm:justify-between sm:gap-4 px-6 py-5 border-b border-[#c9a96e]/10 last:border-b-0"
                   >
                     <span className="text-xs tracking-widest uppercase text-[#c9a96e]">
                       {label}
@@ -66,12 +66,12 @@ export default function KontaktPage() {
                     {href ? (
                       <a
                         href={href}
-                        className="text-base font-light text-[#f0ece3]/90 hover:text-[#c9a96e] transition-colors text-right"
+                        className="text-base font-light text-[#f0ece3]/90 hover:text-[#c9a96e] transition-colors sm:text-right"
                       >
                         {value}
                       </a>
                     ) : (
-                      <span className="text-base font-light text-[#f0ece3]/90 text-right">
+                      <span className="text-base font-light text-[#f0ece3]/90 sm:text-right">
                         {value}
                       </span>
                     )}

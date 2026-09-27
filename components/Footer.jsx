@@ -106,7 +106,7 @@ export default function Footer() {
               <Link
                 key={href}
                 href={href}
-                className="text-xs 2xl:text-base font-light tracking-wide text-secondary hover:text-[#c9a96e] no-underline transition-colors duration-200"
+                className="py-1 text-sm sm:text-xs 2xl:text-base font-light tracking-wide text-secondary hover:text-[#c9a96e] no-underline transition-colors duration-200"
               >
                 {label}
               </Link>
@@ -122,7 +122,7 @@ export default function Footer() {
           <div className="flex flex-col gap-3">
             {CONTACT.map(({ label, href, external, icon }) => {
               const commonClasses =
-                "flex items-center gap-2.5 text-xs 2xl:text-base font-light tracking-wide text-secondary";
+                "flex items-center gap-2.5 py-1 text-sm sm:text-xs 2xl:text-base font-light tracking-wide text-secondary";
 
               return href ? (
                 <a
