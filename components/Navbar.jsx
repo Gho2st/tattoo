@@ -48,6 +48,17 @@ export default function Navbar() {
             : "h-16 sm:h-20 bg-transparent",
         ].join(" ")}
       >
+        {/* Przyciemnienie pod paskiem na samej górze, żeby odciąć go od jasnych zdjęć w hero */}
+        <div
+          aria-hidden="true"
+          className={[
+            "absolute inset-x-0 top-0 h-32 sm:h-40 -z-10 pointer-events-none",
+            "bg-gradient-to-b from-black/85 via-black/45 to-transparent",
+            "transition-opacity duration-300",
+            scrolled ? "opacity-0" : "opacity-100",
+          ].join(" ")}
+        />
+
         {/* Logo */}
         <Link href="/" className="shrink-0 no-underline" onClick={close}>
           <Image
@@ -71,7 +82,7 @@ export default function Navbar() {
             <li key={link.href}>
               <Link
                 href={link.href}
-                className="group relative text-xs 2xl:text-sm tracking-[0.22em] uppercase text-white/80 hover:text-[#f0ece3] transition-colors duration-200 no-underline"
+                className="group relative text-xs 2xl:text-sm tracking-[0.22em] uppercase text-white hover:text-[#c9a96e] transition-colors duration-200 no-underline [text-shadow:0_1px_8px_rgba(0,0,0,0.6)]"
               >
                 {link.label}
                 <span className="absolute left-0 -bottom-0.5 h-px w-0 bg-[#c9a96e] transition-all duration-300 group-hover:w-full" />
@@ -99,20 +110,20 @@ export default function Navbar() {
         >
           <span
             className={[
-              "block h-px bg-[#f0ece3] origin-center transition-all duration-300",
-              menuOpen ? "w-5 translate-y-[6px] rotate-45" : "w-5",
+              "block h-0.5 bg-[#f0ece3] origin-center transition-all duration-300",
+              menuOpen ? "w-5 translate-y-[7px] rotate-45" : "w-5",
             ].join(" ")}
           />
           <span
             className={[
-              "block h-px bg-[#f0ece3] transition-all duration-300",
+              "block h-0.5 bg-[#f0ece3] transition-all duration-300",
               menuOpen ? "w-0 opacity-0" : "w-5 opacity-100",
             ].join(" ")}
           />
           <span
             className={[
-              "block h-px bg-[#f0ece3] origin-center transition-all duration-300",
-              menuOpen ? "w-5 -translate-y-[6px] -rotate-45" : "w-3.5",
+              "block h-0.5 bg-[#f0ece3] origin-center transition-all duration-300",
+              menuOpen ? "w-5 -translate-y-[7px] -rotate-45" : "w-3.5",
             ].join(" ")}
           />
         </button>
